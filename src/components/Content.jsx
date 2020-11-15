@@ -13,7 +13,6 @@ function Content() {
                <p>Date of Birth</p>
                <p>City</p>
                <p>Web Site</p>
-               <p>Home</p>
             </div>
          </div>
          <Posts />
