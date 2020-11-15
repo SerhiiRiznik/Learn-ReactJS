@@ -1,0 +1,63 @@
+.user__posts{
+margin: 10px 0;
+text-align: left; 
+color: blue;
+padding: 0 10px;
+}
+
+.item{
+text-align: left;
+}
+.item p{
+ color: black;
+}
+
+.user__new_post{
+margin: 10px 0;
+text-align: right;
+}
+input{
+   width: 300px;
+   font-size: 13px;
+   padding: 6px 0 4px 10px;
+   border: 1px solid #cecece;
+   background: #F6F6f6;
+   border-radius: 8px;
+}
+textarea{
+   /* = Убираем скролл */
+   overflow: auto;
+
+   /* = Убираем увеличение */
+   resize: none;
+   width: 100%;
+   height: 60px;
+
+   /* = Добавим фон, рамку, отступ*/
+   background: #f6f6f6;
+   border: 1px solid #cecece;
+   border-radius: 8px 0 0 0;
+   padding: 8px 0 8px 10px;
+}
+button{
+   cursor: pointer;
+   border: 1px solid #cecece;
+   background: #f6f6f6;
+   box-shadow: inset 0px 20px 20px #ffffff;
+   border-radius: 8px;
+   padding: 8px 14px;
+   width: 120px;
+   
+}
+button:hover{
+   box-shadow: inset 0px -40px 20px #ffffff;
+}
+button:active{
+   margin-top: 1px;
+   margin-bottom: -1px;
+   zoom: 1;
+}
+h2{
+font-weight: 500;
+font-size: 24px;
+}
