@@ -1,7 +1,8 @@
 // import './Posts.modul.css';
+import Post from './Post/Post';
 import posts from './Posts.module.css';
 
-function Posts() {
+function Posts(props) {
    return (
       <div className={posts.user__posts}>
          <div className={posts.user__new_post}>
@@ -11,16 +12,9 @@ function Posts() {
          </div>
          <div className={posts.user__posts}>
             <h2>All Posts</h2>
-            <div className={posts.item}>
-               <p>
-                  here new post 1
-            </p>
-            </div>
-            <div className={posts.item}>
-               <p>
-                  here new post 2
-            </p>
-            </div>
+            <Post massenges='Hi my friend' />
+            <Post name={props.name} age={props.age} likesCount='12' />
+            <Post massenges='Massenges #3' age={props.age} likesCount='3' />
          </div>
       </div>
    )

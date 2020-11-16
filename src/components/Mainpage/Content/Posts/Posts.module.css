@@ -1,16 +1,11 @@
 .user__posts{
 margin: 10px 0;
 text-align: left; 
-color: blue;
 padding: 0 10px;
 }
 
-.item{
-text-align: left;
-}
-.item p{
- color: black;
-}
+
+
 
 .user__new_post{
 margin: 10px 0;

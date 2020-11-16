@@ -1,0 +1,8 @@
+.item{
+text-align: left;
+border: 1px solid #ccc;
+height: 100px;
+}
+.item p{
+ color: black;
+}

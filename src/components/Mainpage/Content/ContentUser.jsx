@@ -1,6 +1,6 @@
-const { default: Posts } = require("./Posts");
+const { default: Posts } = require("./Posts/Posts");
 
-function Content() {
+function ContentUser(props) {
    return (
       <div className='mainpage__content'>
          <div className='mainpage__img'>
@@ -9,15 +9,17 @@ function Content() {
          <div className='content-user'>
             <img src='https://www.011global.com/Account/Slices/user-anonymous.png'></img>
             <div className='content-user__info'>
-               <p>User Name</p>
-               <p>Date of Birth</p>
+               {/* <input type="text" placeholder='name' />
+               <input type="text" placeholder='age' /> */}
+               <p>User Name: {props.name}</p>
+               <p>Date of Birth: {props.age}</p>
                <p>City</p>
                <p>Web Site</p>
             </div>
          </div>
-         <Posts />
+         <Posts name={props.name} age={props.age} />
       </div>
    )
 }
 
-export default Content;
+export default ContentUser;
