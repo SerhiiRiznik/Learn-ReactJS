@@ -1,35 +1,23 @@
+import { NavLink } from 'react-router-dom'
 import contentDialogs from './ContentDialogs.module.css'
+import DialogItem from './DialogItem';
+import MessageItem from './MessageItem';
+
 
 const ContentDialogs = () => {
    return (
       <div className={contentDialogs.wrapper}>
          <div className={contentDialogs.dialogs}>
-            <div className={contentDialogs.dialog + ' ' + contentDialogs.active}>
-               Viki
-            </div>
-            <div className={contentDialogs.dialog}>
-               Sveta
-            </div>
-            <div className={contentDialogs.dialog}>
-               Ivan
-            </div>
-            <div className={contentDialogs.dialog}>
-               Serg
-            </div>
+            <DialogItem name='Viki' id='1' />
+            <DialogItem name='Sveta' id='2' />
+            <DialogItem name='Ivan' id='3' />
+            <DialogItem name='Serg' id='4' />
          </div>
          <div className={contentDialogs.massages}>
-            <div className={contentDialogs.massagesItem}>
-               Hi
-            </div>
-            <div className={contentDialogs.massagesItem}>
-               Hi, i`m Sveta
-            </div>
-            <div className={contentDialogs.massagesItem}>
-               How are your?
-            </div>
-            <div className={contentDialogs.massagesItem}>
-               I`m ok, & your?
-            </div>
+            <MessageItem message='Hi, i`m Sveta' />
+            <MessageItem message='How are your?' />
+            <MessageItem message='I`m ok, & your?' />
+            <MessageItem message='I`m ok, too' />
          </div>
       </div>
    )
