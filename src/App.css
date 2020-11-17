@@ -73,7 +73,6 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------*/
 .container {
   font-size: 18px;
-  text-align: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 0 auto;
@@ -134,46 +133,50 @@ h1, h2, h3, h4, h5, h6 {
 .mainpage .mainpage__wrapper .mainpage__navbar {
   font-weight: 600;
   text-align: left;
-  height: 250px;
   width: 30%;
   margin: 20px 0;
 }
 
 .mainpage .mainpage__wrapper .mainpage__navbar ul li {
-  padding: 10px 010px;
-  margin: 2px auto;
-  -webkit-transition: all .2s;
-  transition: all .2s;
+  cursor: pointer;
 }
 
 .mainpage .mainpage__wrapper .mainpage__navbar ul li a {
+  padding: 10px 10px;
+  display: block;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  width: 100%;
   color: black;
 }
 
+.mainpage .mainpage__wrapper .mainpage__navbar ul li .active {
+  color: gold;
+  background-color: #f0f0f0;
+}
+
+.mainpage .mainpage__wrapper .mainpage__navbar ul li .active:hover {
+  background-color: #ccc;
+}
+
 .mainpage .mainpage__wrapper .mainpage__navbar ul li:hover {
-  text-decoration: underline;
   background-color: #ccc;
   border-top-left-radius: 5px;
 }
 
-.mainpage .mainpage__wrapper .mainpage__content {
-  background-color: #f0f0f0;
-  width: 70%;
-}
-
-.mainpage .mainpage__wrapper .mainpage__content .mainpage__img {
+.mainpage .mainpage__wrapper .mainpage__img {
   margin: 10px auto;
   height: 125px;
 }
 
-.mainpage .mainpage__wrapper .mainpage__content .mainpage__img img {
+.mainpage .mainpage__wrapper .mainpage__img img {
   height: inherit;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
-.mainpage .mainpage__wrapper .mainpage__content .content-user {
+.mainpage .mainpage__wrapper .content-user {
   border-top: 2px solid #ccc;
   border-bottom: 2px solid #ccc;
   display: -webkit-box;
@@ -185,14 +188,19 @@ h1, h2, h3, h4, h5, h6 {
           align-items: center;
 }
 
-.mainpage .mainpage__wrapper .mainpage__content .content-user img {
+.mainpage .mainpage__wrapper .content-user img {
   height: 100px;
 }
 
-.mainpage .mainpage__wrapper .mainpage__content .content-user .content-user__info {
+.mainpage .mainpage__wrapper .content-user .content-user__info {
   font-size: 14px;
   margin: 0 0 0 10px;
   text-align: left;
+}
+
+.wrapper-content {
+  background-color: #f0f0f0;
+  width: 70%;
 }
 
 .footer {

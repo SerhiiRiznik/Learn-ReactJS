@@ -1,13 +1,15 @@
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
    return (
       <div className='mainpage__navbar'>
          <ul>
-            <li><a href='#'>Profile</a></li>
-            <li><a href='#'>Massagers</a></li>
-            <li><a href='#'>News</a></li>
-            <li><a href='#'>Music</a></li>
-            <li><a href='#'>Setting</a></li>
+            <li><NavLink to='/Content/ContentUser'>Profile</NavLink></li>
+            <li><NavLink to='/Dialogs/ContentDialogs'>Massagers</NavLink></li>
+            <li><NavLink to='/News/ContentNews'>News</NavLink></li>
+            <li><NavLink to='/Music/ContentMusic'>Music</NavLink></li>
+            <li><NavLink to='/Setting/ContentSetting'>Setting</NavLink></li>
+
          </ul>
       </div>
    )

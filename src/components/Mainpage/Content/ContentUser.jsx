@@ -2,7 +2,7 @@ const { default: Posts } = require("./Posts/Posts");
 
 function ContentUser(props) {
    return (
-      <div className='mainpage__content'>
+      <div>
          <div className='mainpage__img'>
             <img src='https://smartlogic.io/images/brand-assets/smartlogic-logo-yellow-1000.png'></img>
          </div>
