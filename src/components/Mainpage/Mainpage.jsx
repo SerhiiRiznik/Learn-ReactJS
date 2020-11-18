@@ -1,7 +1,7 @@
 
 import ContentMusic from "./Music/ContentMusic";
 import ContentNews from "./News/ContentNews";
-import ContentSetting from "./Setting/ContentSetting";
+import Setting from "./Setting/Setting";
 import ContentUser from "./Content/ContentUser";
 import ContentDialogs from "./Dialogs/ContentDialogs";
 
@@ -16,11 +16,11 @@ function Mainpage() {
                <div className='mainpage__wrapper'>
                   <Navbar />
                   <div className='wrapper-content'>
-                     <Route path='/Content/ContentUser' component={ContentUser} />
-                     <Route path='/Dialogs/ContentDialogs' component={ContentDialogs} />
-                     <Route path='/News/ContentNews' component={ContentNews} />
-                     <Route path='/Music/ContentMusic' component={ContentMusic} />
-                     <Route path='/Setting/ContentSetting' component={ContentSetting} />
+                     <Route path='/user' component={ContentUser} />
+                     <Route path='/dialogs' component={ContentDialogs} />
+                     <Route path='/news' component={ContentNews} />
+                     <Route path='/music' component={ContentMusic} />
+                     <Route path='/settings' component={Setting} />
                   </div>
                </div>
             </div>

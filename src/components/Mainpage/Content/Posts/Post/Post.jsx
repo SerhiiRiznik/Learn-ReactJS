@@ -5,9 +5,9 @@ function Post(props) {
    return (
       <div className={post.item}>
          <p>
-            {props.massenges}
+            massenge: {props.massenges}
          </p>
-         {props.name}
+            name: {props.name}
          <br />
          <span>age: {props.age}</span>
 
