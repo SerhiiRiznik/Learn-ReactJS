@@ -1,4 +1,4 @@
-import contentDialogs from './ContentDialogs.module.css'
+import contentDialogs from './../ContentDialogs.module.css'
 
 const MessageItem = (props) => {
    return (

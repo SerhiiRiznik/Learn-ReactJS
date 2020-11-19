@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import contentDialogs from './ContentDialogs.module.css'
+import contentDialogs from './../ContentDialogs.module.css'
 
 const DialogItem = (props) => {
    return (

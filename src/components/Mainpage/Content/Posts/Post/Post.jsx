@@ -5,16 +5,19 @@ function Post(props) {
    return (
       <div className={post.item}>
          <p>
+            Id: {props.id}
+         </p>
+         <p>
             massenge: {props.massenges}
          </p>
-            name: {props.name}
-         <br />
-         <span>age: {props.age}</span>
-
+            name: { props.name}
+         <p>
+            age: {props.age}
+         </p>
          <p>
             Like: {props.likesCount}
          </p>
-      </div>
+      </div >
    )
 }
 export default Post
