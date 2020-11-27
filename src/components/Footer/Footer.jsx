@@ -1,6 +1,6 @@
 
 
-function Footer() {
+const Footer = (props) => {
    return (
       <div>
          <footer className="footer">

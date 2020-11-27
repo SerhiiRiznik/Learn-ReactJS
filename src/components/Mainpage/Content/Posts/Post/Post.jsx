@@ -1,11 +1,11 @@
 import post from './Post.module.css'
 
 
-function Post(props) {
+const Post = (props) => {
    return (
       <div className={post.item}>
          <p>
-            Id: {props.id}
+            Id: {props.key}
          </p>
          <p>
             massenge: {props.massenges}

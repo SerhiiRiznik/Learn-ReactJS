@@ -18,7 +18,6 @@ html,body{
     width: 100%;
     font-size: 100%;
     font-weight: 500;
-   //  line-height: 1;
     font-size: 14px;
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
@@ -38,10 +37,11 @@ img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 /*--------------------*/
 .container{
+   
    font-size: 18px;
    box-sizing: border-box;
   margin: 0 auto;
-  padding: 0 25px;
+//   padding: 0 25px;
   width: 1300px;
 }
 .header{
@@ -75,39 +75,44 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 }
    
 .mainpage{
+   padding-top: 20px;
+            background-color: rgb(240, 240, 240);
 
    .mainpage__wrapper{
       display: flex;
       .mainpage__navbar{
          font-weight: 600;
          text-align: left;
-         // height: 250px;
          width: 30%;
-         margin: 20px 0;
+         margin: 0px 20px;
+         background-color: #fff;
+         height: 400px;
+         &:last-child{
+            
+         }
          ul{
             li{
-               cursor: pointer;
-               // padding: 10px 0;
                a{
                   padding: 10px 10px;
                   display: block;
                   transition: all .2s;
                   width: 100%;
-                  // height: 50px;
-                  color: rgb(0, 0, 0);
+                  color: rgb(30, 30, 30);
                   
                }
                .active{  
-                  color: gold; 
-                  background-color: rgb(240, 240, 240);
+                  color: #000;
+                  background-color: rgb(230, 230, 230);
+                  
+                     padding-left: 20px;
+                  
                   &:hover{
-                     background-color: #ccc;
+                     background-color: rgb(210, 210, 210);
                      
                   }
                }
                &:hover{
-                     // text-decoration: underline;
-                     background-color: #ccc;
+                     background-color:  rgb(210, 210, 210);
                      border-top-left-radius: 5px;
                   }
             }
@@ -116,7 +121,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
       
          
       .mainpage__img{
-         margin: 10px auto;
+         // margin: 10px auto;
          height: 125px;
          img{
             height: inherit;
@@ -127,7 +132,6 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
          }
       }
       .content-user{
-         border-top: 2px solid #ccc;
          border-bottom: 2px solid #ccc;
          display: flex;
          padding: 5px 10px;
@@ -145,7 +149,6 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 }
 
 .wrapper-content{
-   background-color: rgb(240, 240, 240);
    width: 70%;
 }
 

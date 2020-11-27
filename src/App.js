@@ -6,11 +6,12 @@ import Header from './components/Header/Header';
 import Mainpage from './components/Mainpage/Mainpage'
 
 
-function App() {
+const App = (props) => {
+
   return (
     <div >
       <Header />
-      <Mainpage />
+      <Mainpage state={props.state} />
       <Footer />
     </div>
   );

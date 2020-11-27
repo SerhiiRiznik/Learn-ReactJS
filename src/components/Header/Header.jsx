@@ -1,6 +1,6 @@
 
 
-function Header() {
+const Header = (props) => {
    return (
       <div className="header">
          <div className='container'>

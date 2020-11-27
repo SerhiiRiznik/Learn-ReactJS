@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
+const Navbar = (props) => {
    return (
       <div className='mainpage__navbar'>
          <ul>

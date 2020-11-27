@@ -1,7 +1,10 @@
 .item{
+   /* background-color: #fff; */
+
 text-align: left;
 border: 1px solid #ccc;
 min-height: inherit;
+margin-top: 20px;
 }
 .item p{
  color: black;

@@ -1,17 +1,23 @@
 .user__posts{
-margin: 10px 0;
-text-align: left; 
-padding: 0 10px;
+   text-align: left; 
+   background-color: #fff;
+   margin-top: 20px;
+   padding: 10px;
+   
+
 }
 
 
 
 
 .user__new_post{
-margin: 10px 0;
-text-align: right;
+   background-color: #fff;
+   margin: 10px 0;
+   text-align: right;
+   padding: 10px;
+   border-bottom: 2px solid #ccc;
 }
-input{
+.user__new_post input{
    width: 300px;
    font-size: 13px;
    padding: 6px 0 4px 10px;
@@ -19,7 +25,7 @@ input{
    background: #F6F6f6;
    border-radius: 8px;
 }
-textarea{
+.user__new_post textarea{
    /* = Убираем скролл */
    overflow: auto;
 
@@ -34,7 +40,7 @@ textarea{
    border-radius: 8px 0 0 0;
    padding: 8px 0 8px 10px;
 }
-button{
+.user__new_post button{
    cursor: pointer;
    border: 1px solid #cecece;
    background: #f6f6f6;
@@ -44,15 +50,15 @@ button{
    width: 120px;
    
 }
-button:hover{
+.user__new_post button:hover{
    box-shadow: inset 0px -40px 20px #ffffff;
 }
-button:active{
+.user__new_post button:active{
    margin-top: 1px;
    margin-bottom: -1px;
    zoom: 1;
 }
-h2{
+.user__new_post h2{
 font-weight: 500;
 font-size: 24px;
 }
