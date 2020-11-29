@@ -1,14 +1,25 @@
+import './index.css';
+import state from './components/redux/state'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import state from './components/redux/state'
+// import { addLikes, addPost, newPostText } from './components/redux/state'
+import store from './components/redux/state'
 
-ReactDOM.render(<App state={state} />, document.getElementById('root'));
+// import { subscribe } from './components/redux/state'
+
+let rerenderEntireTree = (state) => {
+   console.log(store)
+   ReactDOM.render(<App
+      // likes={addLikes}
+
+      store={store}
 
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+   />, document.getElementById('root'));
+
+}
+rerenderEntireTree(state)
+
+store.subscribe(rerenderEntireTree)

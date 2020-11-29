@@ -11,7 +11,7 @@ import Navbar from "./Navbar/Navbar";
 
 const Mainpage = (props) => {
 
-
+   // console.log(props.state.userPage)
 
    return (
       <BrowserRouter>
@@ -20,8 +20,13 @@ const Mainpage = (props) => {
                <div className='mainpage__wrapper'>
                   <Navbar />
                   <div className='wrapper-content'>
-                     <Route path='/user' render={() => <ContentUser state={props.state.userPage} />} />
-                     <Route path='/dialogs' render={() => <ContentDialogs state={props.state.messages} />} />
+                     <Route path='/user' render={() => <ContentUser
+                        store={props.store}
+                     // addLikes={props.addLikes}
+                     />} />
+                     <Route path='/dialogs' render={() => <ContentDialogs
+                        state={props.store._state._messages}
+                     />} />
                      <Route path='/news' render={() => <ContentNews />} />
                      <Route path='/music' render={() => <ContentMusic />} />
                      <Route path='/settings' render={() => <Setting />} />

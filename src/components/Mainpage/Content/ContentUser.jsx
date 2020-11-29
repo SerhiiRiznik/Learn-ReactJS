@@ -3,12 +3,12 @@ import Posts from './Posts/Posts'
 import UserInfo from './UserInfo/User';
 
 const ContentUser = (props) => {
-
-   console.log(props.state.posts)
+   console.log(props)
    return (
       <div>
          <UserInfo />
-         <Posts state={props.state.posts} />
+         <Posts store={props.store}
+         />
       </div>
    )
 }
