@@ -1,3 +1,5 @@
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 
 const Header = (props) => {
@@ -7,9 +9,10 @@ const Header = (props) => {
             <div className='header__wrapper'>
                <img src='https://yoursite.com/wp-content/uploads/2020/06/logo-ys.png'></img>
                <ul>
-                  <li><a href="#">home</a></li>
-                  <li><a href="#">about</a></li>
+                  <li><NavLink to='/main'>home</NavLink></li>
+                  <li><NavLink to='/about'>about</NavLink></li>
                   <li><a href="#">contact</a></li>
+
                </ul>
             </div>
          </div>

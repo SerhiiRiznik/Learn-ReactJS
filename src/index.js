@@ -1,25 +1,28 @@
 import './index.css';
-import state from './components/redux/state'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-// import { addLikes, addPost, newPostText } from './components/redux/state'
 import store from './components/redux/state'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-// import { subscribe } from './components/redux/state'
+let _rerenderEntireTree = (state) => {
+   // console.log(state)
 
-let rerenderEntireTree = (state) => {
-   console.log(store)
    ReactDOM.render(<App
       // likes={addLikes}
+      // Сюда передать store.FUNCTION.bind(store) биндим функцию именно к сторе
+      // store={store}
 
-      store={store}
+      //
+      state={state}
+
+      dispatch={store.dispatch.bind(store)}
+   //
 
 
    />, document.getElementById('root'));
-
 }
-rerenderEntireTree(state)
+_rerenderEntireTree(store.getState())
 
-store.subscribe(rerenderEntireTree)
+store.subscribe(_rerenderEntireTree)

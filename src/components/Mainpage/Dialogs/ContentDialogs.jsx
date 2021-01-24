@@ -7,12 +7,12 @@ import MessageItem from './Message/MessageItem';
 
 const ContentDialogs = (props) => {
    console.log(props)
-   const dialogs = props.state.dialogItem.map((dialogs) => {
-      return <DialogItem name={dialogs.name} id={dialogs.id} />
+   const dialogs = props.state.dialogItem.map((dialogs, idx) => {
+      return <DialogItem name={dialogs.name} id={dialogs.id} key={idx} />
    })
 
-   const messages = props.state._messag.map((messages) => {
-      return <MessageItem message={messages.message} />
+   const messages = props.state._messag.map((messages, idx) => {
+      return <MessageItem message={messages.message} key={idx} />
    })
 
 

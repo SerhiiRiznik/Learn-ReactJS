@@ -1,24 +1,14 @@
 import post from './Post.module.css'
 import React from 'react'
+import { addLikeCountActionCreater } from '../../../../redux/state'
+
 
 const Post = (props) => {
+   // console.log(props.index)
+   let addLike = () => {
 
-
-   // let newPostElement = React.createRef()
-
-   // let a = (likes) => {
-   //    let like = newLike.innerHTML
-   //    props.addLikes(like)
-   //    rerenderEntireTree(state)
-   // }
-
-
-   // let addLikes = () => {
-
-   //    props.addLikes()
-   //    rerenderEntireTree(state)
-   // }
-
+      props.dispatch(addLikeCountActionCreater(props.index))
+   }
 
    return (
       <div className={post.item}>
@@ -32,7 +22,7 @@ const Post = (props) => {
          <p>
             {/* age: {props.age} */}
          </p>
-         <p >
+         <p onClick={addLike}>
             Like: {props.likesCount}
          </p>
       </div >

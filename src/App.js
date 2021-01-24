@@ -4,19 +4,26 @@ import './App.css';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Mainpage from './components/Mainpage/Mainpage'
+import { BrowserRouter } from "react-router-dom";
+
 
 
 const App = (props) => {
-  console.log(props)
+  // console.log(props)
   return (
     <div >
-      <Header />
-      <Mainpage
-        store={props.store}
+      <BrowserRouter>
+        <Header />
+        <Mainpage
+          state={props.state}
+          //
+          dispatch={props.dispatch}
+        //
+        // addLikes={props.addLikes} 
+        />
+        <Footer />
 
-      // addLikes={props.addLikes} 
-      />
-      <Footer />
+      </BrowserRouter>
     </div>
   );
 }

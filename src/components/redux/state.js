@@ -1,11 +1,13 @@
-let rerenderEntireTree
+
+
+
 
 let store = {
    _state: {
       userPage: {
          posts: [
             { id: 1, messages: 'Massenges #1', likesCount: 0, name: 'viki', },
-            { id: 2, messages: 'Massenges #1', likesCount: 0, name: 'viki', },
+            { id: 2, messages: 'Massenges #2', likesCount: 2, name: 'SErg', },
             // { id: 3, messages: 'Massenges #1', likesCount: 32, name: 'viki', },
             // { id: 4, messages: 'Massenges #2', likesCount: 12, name: 'serg', },
             // { id: 5, messages: 'Massenges #3', likesCount: 12, name: '', },
@@ -14,7 +16,7 @@ let store = {
             // { id: 8, messages: 'Massenges #3', likesCount: 12, name: '', },
             // { id: 9, messages: 'Massenges #3', likesCount: 12, name: 'Andry', },
          ],
-         postText: 'New Messag for Post (from state object)'
+         postText: ''
       },
       _messages: {
          dialogItem: [
@@ -50,35 +52,67 @@ let store = {
          ]
       }
    },
-
-   newPostText(newText) {
-      this._state.userPage.postText = newText
-      rerenderEntireTree(store._state)
+   _rerenderEntireTree() {
+      console.log("_state chenged")
    },
-
-   addPost() {
-
-      let newPost = {
-         id: 10,
-         messages: this._state.userPage.postText,
-         likesCount: 32,
-      }
-
-      this._state.userPage.posts.push(newPost)
-      rerenderEntireTree(store._state)
-
+   //------------------------------------------------------------------------------------
+   getState() {
+      return this._state
    },
-
-   rerenderEntireTree() {
-      console.log("set chenged")
-   },
-
-
    subscribe(observer) {
-      rerenderEntireTree = observer
-   }
+      this._rerenderEntireTree = observer
+   },
+   //------------------------------------------------------------------------------------
 
+   dispatch(action) {
+      // debugger
+      // console.log(action)
+      // (action)-обэкт/действия  {type: 'ADD-POST'} {type: 'NEW-POST-TEXT'} обизательный свойство type !!!!
+      if (action.type === 'ADD-POST') {
+         if (this._state.userPage.postText.length > 0) {
+            let newPost = {
+               id: 10,
+               messages: this._state.userPage.postText,
+               likesCount: 32,
+            }
+            this._state.userPage.posts.push(newPost)
+            this._rerenderEntireTree(this._state)
+            this._state.userPage.postText = ''
+         }
+
+
+      } else if (action.type === 'NEW-POST-TEXT') {
+         this._state.userPage.postText = action.newText
+         console.log(this._state.userPage.postText)
+
+         this._rerenderEntireTree(this._state)
+      }
+      else if (action.type === 'ADD-LIKE') {
+
+
+
+
+         console.log(action)
+         console.log(action.type)
+         console.log(action.id)
+
+         // this._rerenderEntireTree(this._state)
+      }
+   }
 }
 
+
+export const addPostActionCreater = () => {
+   return { type: 'ADD-POST' }
+}
+export const newPostTextActionCreater = (text) => {
+   return { type: 'NEW-POST-TEXT', newText: text }
+}
+
+export const addLikeCountActionCreater = (index) => {
+   return { type: 'ADD-LIKE', id: index }
+}
+
+window.store = store
 
 export default store;
