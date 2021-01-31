@@ -4,7 +4,7 @@ const UserInfo = (props) => {
    return (
       <div className={user.wrrap}>
          <div className='mainpage__img'>
-            <img src='https://smartlogic.io/images/brand-assets/smartlogic-logo-yellow-1000.png' alt='UserImg'></img>
+            {/* <img src='https://smartlogic.io/images/brand-assets/smartlogic-logo-yellow-1000.png' alt='UserImg'></img> */}
          </div>
          <div className='content-user'>
             <img src='https://www.011global.com/Account/Slices/user-anonymous.png' alt='UserLogo'></img>

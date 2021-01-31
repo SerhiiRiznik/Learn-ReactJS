@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store from './components/redux/state'
+import store from './components/redux/store'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 let _rerenderEntireTree = (state) => {

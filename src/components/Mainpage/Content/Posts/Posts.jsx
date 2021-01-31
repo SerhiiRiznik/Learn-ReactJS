@@ -1,5 +1,5 @@
 import React from 'react'
-import { addPostActionCreater, newPostTextActionCreater } from '../../../redux/state';
+import { addPostActionCreater, newPostTextActionCreater } from '../../../redux/userpage-reducer';
 import Post from './Post/Post';
 import posts from './Posts.module.css';
 
@@ -7,6 +7,7 @@ import posts from './Posts.module.css';
 
 const Posts = (props) => {
    // console.log(props)
+   debugger
    let post = props.state.userPage.posts.map((post, index) => {
       return <Post
          key={index + 1}

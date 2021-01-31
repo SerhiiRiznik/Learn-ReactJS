@@ -21,6 +21,8 @@ const Mainpage = (props) => {
             <div className='mainpage__wrapper'>
                <Navbar />
                <div className='wrapper-content'>
+
+                  {/* <Route path='/' render={() => <ContentUser state={props.state} dispatch={props.dispatch} />} /> */}
                   <Route path='/about' render={() => <UserInfo />} />
                   <Route path='/main' render={() => <ContentUser
                      state={props.state}
@@ -30,6 +32,7 @@ const Mainpage = (props) => {
                   />} />
                   <Route path='/dialogs' render={() => <ContentDialogs
                      state={props.state._messages}
+                     dispatch={props.dispatch}
                   />} />
                   <Route path='/news' render={() => <ContentNews />} />
                   <Route path='/music' render={() => <ContentMusic />} />

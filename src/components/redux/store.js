@@ -1,4 +1,7 @@
+// import React from 'react'
 
+import messagesReducer from "./messages-reducer"
+import userPageReducer from "./userpage-reducer"
 
 
 
@@ -49,7 +52,8 @@ let store = {
             { id: 7, message: 'Dekuje, by' },
             { id: 8, message: '' },
             { id: 8, message: 'asdasd' },
-         ]
+         ],
+         massegText: ''
       }
    },
    _rerenderEntireTree() {
@@ -65,53 +69,19 @@ let store = {
    //------------------------------------------------------------------------------------
 
    dispatch(action) {
+
+      this._state.userPage = userPageReducer(this._state.userPage, action)
+      this._state._messages = messagesReducer(this._state._messages, action)
+
+      this._rerenderEntireTree(this._state)
       // debugger
       // console.log(action)
       // (action)-обэкт/действия  {type: 'ADD-POST'} {type: 'NEW-POST-TEXT'} обизательный свойство type !!!!
-      if (action.type === 'ADD-POST') {
-         if (this._state.userPage.postText.length > 0) {
-            let newPost = {
-               id: 10,
-               messages: this._state.userPage.postText,
-               likesCount: 32,
-            }
-            this._state.userPage.posts.push(newPost)
-            this._rerenderEntireTree(this._state)
-            this._state.userPage.postText = ''
-         }
-
-
-      } else if (action.type === 'NEW-POST-TEXT') {
-         this._state.userPage.postText = action.newText
-         console.log(this._state.userPage.postText)
-
-         this._rerenderEntireTree(this._state)
-      }
-      else if (action.type === 'ADD-LIKE') {
-
-
-
-
-         console.log(action)
-         console.log(action.type)
-         console.log(action.id)
-
-         // this._rerenderEntireTree(this._state)
-      }
    }
 }
 
 
-export const addPostActionCreater = () => {
-   return { type: 'ADD-POST' }
-}
-export const newPostTextActionCreater = (text) => {
-   return { type: 'NEW-POST-TEXT', newText: text }
-}
 
-export const addLikeCountActionCreater = (index) => {
-   return { type: 'ADD-LIKE', id: index }
-}
 
 window.store = store
 
