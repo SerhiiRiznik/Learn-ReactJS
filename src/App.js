@@ -15,13 +15,7 @@ const App = (props) => {
     <div >
       <BrowserRouter>
         <Header />
-        <Mainpage
-          state={props.state}
-          //
-          dispatch={props.dispatch}
-        //
-        // addLikes={props.addLikes} 
-        />
+        <Mainpage />
         <Footer />
 
       </BrowserRouter>

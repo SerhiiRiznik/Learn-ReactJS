@@ -1,14 +1,14 @@
 import React from 'react'
-import { addPostActionCreater, newPostTextActionCreater } from '../../../redux/userpage-reducer';
 import Post from './Post/Post';
 import posts from './Posts.module.css';
+// import { addPostActionCreater, newPostTextActionCreater } from '../../../redux/userpage-reducer';
+
 
 
 
 const Posts = (props) => {
-   // console.log(props)
-   debugger
-   let post = props.state.userPage.posts.map((post, index) => {
+
+   let post = props.userPage.posts.map((post, index) => {
       return <Post
          key={index + 1}
          index={index + 1}
@@ -18,30 +18,27 @@ const Posts = (props) => {
          likesCount={post.likesCount}
       />
    })
-   // debugger
 
-
-   // ----------------------------------------------------
-   // Нужно использовать Bind(store) в index.js чтобы функция 
-   // которую мы вызиваем в постах ссылалась на обэкт в котором она сидит,
-   // при изменении Store в независимости от имени функция работала   
-   // ----------------------------------------------------
    let newPostElement = React.createRef()
 
    let addPost = () => {
-      props.dispatch(addPostActionCreater())
+      props.addPost()
+      // props.dispatch(addPostActionCreater())
    }
 
    let newPostText = () => {
       let text = newPostElement.current.value
-      props.dispatch(newPostTextActionCreater(text))
+      props.newPostText(text)
    }
 
    return (
+
       <div className={posts.wrrap}>
          <div className={posts.user__new_post}>
             <h2>New post</h2>
-            <textarea ref={newPostElement} value={props.state.userPage.postText} onChange={newPostText} />
+            <textarea ref={newPostElement}
+               value={props.userPage.postText}
+               onChange={newPostText} />
             <button onClick={addPost}>Submit</button>
             {/* <button >DANGER</button> */}
          </div>
@@ -49,8 +46,11 @@ const Posts = (props) => {
             <h2>All Posts</h2>
             {post}
          </div>
-      </div >
-   )
+      </div>
 
+   )
 }
+
+
+
 export default Posts;

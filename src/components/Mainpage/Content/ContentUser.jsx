@@ -1,15 +1,18 @@
 import React from 'react'
-import Posts from './Posts/Posts'
+// import Posts from './Posts/Posts'
 import UserInfo from './UserInfo/UserInfo';
+import PostsContainer from "./Posts/PostsContainer";
 
-const ContentUser = (props) => {
-   // console.log(props)
+const ContentUser = () => {
+
    return (
+
       <div>
          <UserInfo />
-         <Posts state={props.state} dispatch={props.dispatch}
-         />
+         <PostsContainer />
+
       </div>
+
    )
 }
 

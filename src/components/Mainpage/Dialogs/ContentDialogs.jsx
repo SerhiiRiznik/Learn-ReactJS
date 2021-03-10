@@ -1,5 +1,4 @@
 import React from 'react'
-import { newMessagActionCreater, sentMessagActionCreater } from '../../redux/messages-reducer';
 import contentDialogs from './ContentDialogs.module.css'
 import DialogItem from './Dialog/DialogItem';
 import MessageItem from './Message/MessageItem';
@@ -7,22 +6,23 @@ import MessageItem from './Message/MessageItem';
 
 
 const ContentDialogs = (props) => {
-   console.log(props)
-   const dialogs = props.state.dialogItem.map((dialogs, idx) => <DialogItem name={dialogs.name} id={dialogs.id} key={idx} />)
 
-   const messages = props.state._messag.map((messages, idx) => <MessageItem message={messages.message} key={idx} />)
+   // debugger
+   const dialogs = props.dialogItem.map((dialogs, idx) => <DialogItem name={dialogs.name} id={dialogs.id} key={idx} />)
+
+   const messages = props._messag.map((messages, idx) => <MessageItem message={messages.message} key={idx} />)
 
 
    let newMessagItem = React.createRef()
 
 
    let sentMessag = () => {
-      props.dispatch(sentMessagActionCreater())
+      props.sentMessag()
 
    }
    let newMassegText = () => {
       let messag = newMessagItem.current.value
-      props.dispatch(newMessagActionCreater(messag))
+      props.newMassegText(messag)
    }
 
    return (
@@ -39,7 +39,7 @@ const ContentDialogs = (props) => {
             <textarea className={contentDialogs.newMessag}
                placeholder='Enter your masseg'
                ref={newMessagItem}
-               value={props.state.massegText}
+               value={props.massegText}
                onChange={newMassegText}
             ></textarea>
             <button className={contentDialogs.addMessag}
