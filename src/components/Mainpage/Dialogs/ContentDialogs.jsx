@@ -39,7 +39,7 @@ const ContentDialogs = (props) => {
             <textarea className={contentDialogs.newMessag}
                placeholder='Enter your masseg'
                ref={newMessagItem}
-               value={props.massegText}
+               value={props.messagText}
                onChange={newMassegText}
             ></textarea>
             <button className={contentDialogs.addMessag}

@@ -8,7 +8,7 @@ import posts from './Posts.module.css';
 
 const Posts = (props) => {
 
-   let post = props.userPage.posts.map((post, index) => {
+   let post = props.userPage.map((post, index) => {
       return <Post
          key={index + 1}
          index={index + 1}
@@ -23,7 +23,6 @@ const Posts = (props) => {
 
    let addPost = () => {
       props.addPost()
-      // props.dispatch(addPostActionCreater())
    }
 
    let newPostText = () => {
@@ -37,10 +36,9 @@ const Posts = (props) => {
          <div className={posts.user__new_post}>
             <h2>New post</h2>
             <textarea ref={newPostElement}
-               value={props.userPage.postText}
+               value={props.postText}
                onChange={newPostText} />
             <button onClick={addPost}>Submit</button>
-            {/* <button >DANGER</button> */}
          </div>
          <div className={posts.user__posts}>
             <h2>All Posts</h2>

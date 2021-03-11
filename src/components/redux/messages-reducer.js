@@ -32,30 +32,35 @@ let initialState = {
       { id: 6, message: 'Dekuje, by' },
       { id: 7, message: 'Dekuje, by' },
       { id: 8, message: '' },
-      { id: 8, message: 'asdasd' },
+      { id: 9, message: 'asdasd' },
    ],
    massegText: ''
 }
 
 const messagesReducer = (state = initialState, action) => {
+
+
+
    switch (action.type) {
 
       case SEND_MESSAG:
-         let masseg = state.massegText
-         let newMasseg = {
-            id: 10,
-            message: masseg
+         debugger
+         return {
+            ...state,
+            massegText: '',
+            _messag: [...state._messag, { id: 20, message: state.massegText }]
          }
-         state._messag.push(newMasseg)
-         state.massegText = ''
-         return state
+
 
       case NEW_MESSAG_TEXT:
-         initialState.massegText = action.messag
-         console.log(initialState.massegText)
-         return initialState
+
+         return {
+            ...state,
+            massegText: action.messag
+         }
+
       default:
-         return initialState
+         return state
    }
 }
 export const newMessagActionCreater = (text) => {

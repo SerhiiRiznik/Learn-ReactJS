@@ -1,0 +1,46 @@
+.wrapp{
+   margin: 0;
+   display: block;
+   background: #fff;
+   padding: 10px;
+   
+}
+.user__wrapp{
+   display: flex;
+   border: solid 3px #ccc;
+   border-radius: 10px;
+   padding: 5px 10px;
+   margin-bottom: 10px;
+}
+
+.user__wrapp__img{
+   display: flex;
+   flex-direction: column;
+}
+.user__wrapp__img img{
+   border-radius: 10px;
+   width: 185px;
+   height: 185px;
+}
+.user__wrapp__img button{
+   margin: 5px 0;
+   border: solid 1px #ccc;
+   border-radius: 10px;
+   transition: .3s;
+   
+}
+.user__wrapp__img button:hover{
+   background: #ccc;
+   
+}
+
+.user__wrapp__info{
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   padding-left: 20px;
+}
+
+.user__avatar{
+
+}

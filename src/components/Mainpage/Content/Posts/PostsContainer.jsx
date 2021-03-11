@@ -6,9 +6,10 @@ import Posts from "./Posts";
 
 let mapStateToProps = (state) => {
 
-   console.log(state);
    return {
-      userPage: state.userPage
+      userPage: state.userPage.posts,
+      postText: state.userPage.postText,
+
    }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -18,7 +19,6 @@ let mapDispatchToProps = (dispatch) => {
          dispatch(addPostActionCreater())
       },
       newPostText: (text) => {
-         // let text = newPostElement.current.value
          dispatch(newPostTextActionCreater(text))
       }
    }

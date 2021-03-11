@@ -7,6 +7,7 @@ import { Route } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import UserInfo from "./Content/UserInfo/UserInfo";
 import ContainerContentDialogs from "./Dialogs/ContainerContentDialogs";
+import ContainerUsers from "./Users/ContainerUsers";
 
 
 
@@ -21,13 +22,15 @@ const Mainpage = () => {
                <Navbar />
                <div className='wrapper-content'>
 
-                  {/* <Route path='/' render={() => <ContentUser state={props.state} dispatch={props.dispatch} />} /> */}
+
                   <Route path='/about' render={() => <UserInfo />} />
                   <Route path='/main' render={() => <ContentUser />} />
                   <Route path='/dialogs' render={() => <ContainerContentDialogs />} />
                   <Route path='/news' render={() => <ContentNews />} />
                   <Route path='/music' render={() => <ContentMusic />} />
                   <Route path='/settings' render={() => <Setting />} />
+
+                  <Route path='/users' render={() => <ContainerUsers />} />
 
                </div>
             </div>

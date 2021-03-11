@@ -3,18 +3,20 @@ import { newMessagActionCreater, sentMessagActionCreater } from '../../redux/mes
 import ContentDialogs from "./ContentDialogs";
 
 const mapStateToProps = (state) => {
-   // debugger
+
    return {
       dialogItem: state._messages.dialogItem,
       _messag: state._messages._messag,
+      messagText: state._messages.massegText,
    }
+
 }
-const mapDispatchToProps = (dispatch, messag) => {
+const mapDispatchToProps = (dispatch) => {
    return {
       sentMessag: () => {
          dispatch(sentMessagActionCreater())
       },
-      newMassegText: () => {
+      newMassegText: (messag) => {
          dispatch(newMessagActionCreater(messag))
       },
    }

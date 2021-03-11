@@ -26,18 +26,21 @@ const userPageReducer = (state = initialState, action) => {
    // добавить проверку на длину добавления поста (більше 0 символа добавляем)
    switch (action.type) {
       case ADD_POST:
-         let newPost = {
-            id: 10,
-            messages: state.postText,
-            likesCount: 32,
+
+         return {
+            ...state,
+            postText: '',
+            posts: [...state.posts, { id: 10, messages: state.postText, likesCount: 32 }],
+
          }
-         state.posts.push(newPost)
-         state.postText = ''
-         return state
-      case NEW_POST_TEXT:
-         state.postText = action.newText
-         console.log(state.postText)
-         return state
+
+      case NEW_POST_TEXT: {
+         return {
+            ...state,
+            postText: action.newText
+         }
+
+      }
       default:
          return state;
    }
