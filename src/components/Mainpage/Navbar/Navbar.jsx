@@ -7,7 +7,8 @@ const Navbar = (props) => {
             <li><NavLink to='/main'>Profile</NavLink></li>
             <li><NavLink to='/dialogs'>Massagers</NavLink></li>
             <li><NavLink to='/news'>News</NavLink></li>
-            <li><NavLink to='/music'>Music</NavLink></li>
+            <li><NavLink to='/music'>Music</NavLink></li><br />
+            <li><NavLink to='/users'>Users</NavLink></li><br />
             <li><NavLink to='/settings'>Setting</NavLink></li>
 
          </ul>

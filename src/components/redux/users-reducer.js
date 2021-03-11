@@ -2,13 +2,13 @@ const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
-let initialState = {
-   users: []
-}
+// let initialState = {
+//    users: []
+// }
 
 
 
-let UsersReducer = (state = initialState, action) => {
+let UsersReducer = (state = { users: [] }, action) => {
 
    switch (action.type) {
       case FOLLOW:
@@ -33,7 +33,7 @@ let UsersReducer = (state = initialState, action) => {
             })
          }
       case SET_USERS:
-         return { ...state, users: [...state.users, action.users] }
+         return { ...state, users: [...state.users, ...action.users] }
       default:
          return state
    }
