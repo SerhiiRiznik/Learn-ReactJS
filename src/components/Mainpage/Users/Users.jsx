@@ -1,40 +1,48 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
-import users from './Users.module.css'
+import React from "react";
+import styles from './Users.module.css'
 import userPhoto from '../../../assets/images/userAvatarNull.png'
 
-const Users = (props) => {
-
-   useEffect(() => {
-      axios.get('https://social-network.samuraijs.com/api/1.0/users')
-         .then(response => {
-            console.log(response.data.items);
-            props.setUsers(response.data.items)
-         })
-   }, [])
 
 
+let Users = (props) => {
 
+   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+   let pages = []
 
-
+   for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i)
+   }
 
    return (
+      <div className={styles.wrapp}>
+         <div>
+            {pages.map((p, idx) => {
+               return (
+                  <span
+                     key={idx + 1}
+                     className={props.currentPage === p ? styles.selectedPage : null}
+                     onClick={(e) => { props.onPageChanged(p) }}
+                  >{p}
+                  </span>
+               )
+            })}
 
-      <div className={users.wrapp}>
-         {/* <button onClick={SetUsers}>Set Users</button> */}
+         </div>
          {
             props.users.map(user => {
+               console.log(user)
                return (
-                  <div className={users.user__wrapp} key={user.id}>
-                     <div className={users.user__wrapp__img}>
-                        <img className={users.user__avatar} src={user.photos.small != null ? user.photos.small : userPhoto} alt="Avatar User" />
+
+                  <div className={styles.user__wrapp} key={user.id}>
+                     <div className={styles.user__wrapp__img}>
+                        <img className={styles.user__avatar} src={user.photos.small != null ? user.photos.small : userPhoto} alt="Avatar User" />
                         {
                            user.followed ?
                               <button onClick={() => { props.unfollow(user.id) }}>unFollow</button>
                               : <button onClick={() => { props.follow(user.id) }}>Follow</button>
                         }
                      </div>
-                     <div className={users.user__wrapp__info}>
+                     <div className={styles.user__wrapp__info}>
                         <div>
                            <p>{user.name}</p>
                            <p>{user.status}</p>
