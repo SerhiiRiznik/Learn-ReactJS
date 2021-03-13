@@ -5,7 +5,6 @@ import userPhoto from '../../../assets/images/userAvatarNull.png'
 
 
 let Users = (props) => {
-
    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
    let pages = []
 
@@ -30,9 +29,7 @@ let Users = (props) => {
          </div>
          {
             props.users.map(user => {
-               console.log(user)
                return (
-
                   <div className={styles.user__wrapp} key={user.id}>
                      <div className={styles.user__wrapp__img}>
                         <img className={styles.user__avatar} src={user.photos.small != null ? user.photos.small : userPhoto} alt="Avatar User" />
