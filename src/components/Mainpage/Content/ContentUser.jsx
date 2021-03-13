@@ -1,18 +1,21 @@
 import React from 'react'
 import UserInfo from './UserInfo/UserInfo';
 import PostsContainer from "./Posts/PostsContainer";
+import Loader from '../../Loader/Loader';
 
-const ContentUser = () => {
+const ContentUser = (props) => {
+   if (!props.userProfile) {
+      return <Loader />
+   } else {
+      return (
 
-   return (
+         <div>
+            <UserInfo userProfile={props.userProfile} />
+            <PostsContainer />
+         </div>
 
-      <div>
-         <UserInfo />
-         <PostsContainer />
-
-      </div>
-
-   )
+      )
+   }
 }
 
 export default ContentUser;

@@ -189,10 +189,6 @@ h1, h2, h3, h4, h5, h6 {
           align-items: center;
 }
 
-.mainpage .mainpage__wrapper .content-user img {
-  height: 100px;
-}
-
 .mainpage .mainpage__wrapper .content-user .content-user__info {
   font-size: 14px;
   margin: 0 0 0 10px;

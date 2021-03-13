@@ -1,13 +1,12 @@
-
 import ContentMusic from "./Music/ContentMusic";
 import ContentNews from "./News/ContentNews";
 import Setting from "./Setting/Setting";
-import ContentUser from "./Content/ContentUser";
 import { Route } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import UserInfo from "./Content/UserInfo/UserInfo";
 import ContainerContentDialogs from "./Dialogs/ContainerContentDialogs";
 import UsersContainer from "./Users/UsersContainer";
+import ContentUserContainer from "./Content/ContentUserContainer";
 
 
 
@@ -24,7 +23,7 @@ const Mainpage = () => {
 
 
                   <Route path='/about' render={() => <UserInfo />} />
-                  <Route path='/main' render={() => <ContentUser />} />
+                  <Route path='/profile' render={() => <ContentUserContainer />} />
                   <Route path='/dialogs' render={() => <ContainerContentDialogs />} />
                   <Route path='/news' render={() => <ContentNews />} />
                   <Route path='/music' render={() => <ContentMusic />} />

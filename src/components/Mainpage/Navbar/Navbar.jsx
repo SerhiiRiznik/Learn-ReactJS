@@ -4,7 +4,7 @@ const Navbar = (props) => {
    return (
       <div className='mainpage__navbar'>
          <ul>
-            <li><NavLink to='/main'>Profile</NavLink></li>
+            <li><NavLink to='/profile'>Profile</NavLink></li>
             <li><NavLink to='/dialogs'>Massagers</NavLink></li>
             <li><NavLink to='/news'>News</NavLink></li>
             <li><NavLink to='/music'>Music</NavLink></li><br />

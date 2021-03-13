@@ -1,7 +1,7 @@
 
 const ADD_POST = 'ADD-POST'
 const NEW_POST_TEXT = 'NEW-POST-TEXT'
-// const ADD_LIKE = 'ADD-LIKE'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 let initialState = {
    posts: [
@@ -15,18 +15,13 @@ let initialState = {
       // { id: 8, messages: 'Massenges #3', likesCount: 12, name: '', },
       // { id: 9, messages: 'Massenges #3', likesCount: 12, name: 'Andry', },
    ],
-   postText: ''
+   postText: '',
+   userProfile: null
 }
 
 const userPageReducer = (state = initialState, action) => {
-   // debugger
-   // console.log(action)
-   // (action)-обэкт/действия  {type: 'ADD-POST'} {type: 'NEW-POST-TEXT'} обизательный свойство type !!!!
-
-   // добавить проверку на длину добавления поста (більше 0 символа добавляем)
    switch (action.type) {
       case ADD_POST:
-
          return {
             ...state,
             postText: '',
@@ -38,6 +33,13 @@ const userPageReducer = (state = initialState, action) => {
          return {
             ...state,
             postText: action.newText
+         }
+
+      }
+      case SET_USER_PROFILE: {
+         return {
+            ...state,
+            userProfile: action.profile
          }
 
       }
@@ -56,5 +58,6 @@ export const newPostTextActionCreater = (text) => {
 export const addLikeCountActionCreater = (index, a) => {
    return { type: 'ADD-LIKE', id: index, like: a }
 }
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
 export default userPageReducer
