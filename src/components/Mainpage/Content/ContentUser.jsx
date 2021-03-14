@@ -4,6 +4,7 @@ import PostsContainer from "./Posts/PostsContainer";
 import Loader from '../../Loader/Loader';
 
 const ContentUser = (props) => {
+
    if (!props.userProfile) {
       return <Loader />
    } else {

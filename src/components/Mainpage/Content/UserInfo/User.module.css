@@ -1,3 +1,9 @@
 .wrrap {
       background-color: #fff;
 }
+
+
+
+.content__user__info ul li{
+      padding-left: 10px;
+}

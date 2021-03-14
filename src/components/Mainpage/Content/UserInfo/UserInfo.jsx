@@ -9,21 +9,22 @@ const UserInfo = (props) => {
       <>
          <div className={user.wrrap}>
             <div className='mainpage__img'>
-               {!props.userProfile.photos.large}
+               <img src={props.userProfile.photos.large} alt="imgPage" />
             </div>
             <div className='content-user'>
                <img src={props.userProfile.photos.small} alt='UserLogo'></img>
-               <div className='content-user__info'>
-                  <p>User Name:{props.userProfile.fullName} </p>
-                  <p>About me: {props.userProfile.aboutMe} </p>
-                  <ul>Contacts:
-                     <li>facebook: {props.userProfile.contacts.facebook}</li>
-                     <li>github: {props.userProfile.contacts.github}</li>
-                     <li>instagram: {props.userProfile.contacts.instagramk}</li>
-                     <li>twitter: {props.userProfile.contacts.twitter}</li>
-                     <li>vk: {props.userProfile.contacts.vk}</li>
-                     <li>website: {props.userProfile.contacts.website}</li>
-                     <li>youtube: {props.userProfile.contacts.youtube}</li>
+               <div className={user.content__user__info}>
+                  <p><b>User Name:</b> {props.userProfile.fullName} </p>
+
+                  <p><b>About me:</b> {props.userProfile.aboutMe} </p>
+                  <ul><b>Contacts:</b>
+                     <li><b>facebook:</b> {props.userProfile.contacts.facebook}</li>
+                     <li><b>github:</b> {props.userProfile.contacts.github}</li>
+                     <li><b>instagram:</b> {props.userProfile.contacts.instagramk}</li>
+                     <li><b>twitter:</b> {props.userProfile.contacts.twitter}</li>
+                     <li><b>vk:</b> {props.userProfile.contacts.vk}</li>
+                     <li><b>website:</b> {props.userProfile.contacts.website}</li>
+                     <li><b>youtube:</b> {props.userProfile.contacts.youtube}</li>
                   </ul>
                   <p>lookingForAJob: {!props.userProfile.lookingForAJob ? <label>Looking for Job<img src={lfj} alt='LookingForJob'></img></label> : <label>Have Job<img src={hj} alt='haveJob'></img></label>}</p>
                   <p>Web Site

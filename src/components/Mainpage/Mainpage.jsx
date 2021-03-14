@@ -23,7 +23,7 @@ const Mainpage = () => {
 
 
                   <Route path='/about' render={() => <UserInfo />} />
-                  <Route path='/profile' render={() => <ContentUserContainer />} />
+                  <Route path='/profile/:userId?' render={() => <ContentUserContainer />} />
                   <Route path='/dialogs' render={() => <ContainerContentDialogs />} />
                   <Route path='/news' render={() => <ContentNews />} />
                   <Route path='/music' render={() => <ContentMusic />} />

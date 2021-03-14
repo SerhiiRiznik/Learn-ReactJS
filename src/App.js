@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Mainpage from './components/Mainpage/Mainpage'
 import { BrowserRouter } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const App = (props) => {
   return (
     <div >
       <BrowserRouter>
-        <Header />
+        <HeaderContainer />
         <Mainpage />
         <Footer />
 
