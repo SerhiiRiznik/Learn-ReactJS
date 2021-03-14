@@ -1,7 +1,8 @@
-import axios from 'axios'
+
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { userAPI } from '../../../API/api'
 import { setUserProfile } from '../../redux/userpage-reducer'
 import ContentUser from './ContentUser'
 
@@ -14,22 +15,14 @@ class ContentUserContainer extends React.Component {
       if (!userId) {
          userId = this.props.auth.userId
       }
-      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-         .then(response => {
-
-            this.props.setUserProfile(response.data)
-
-         })
+      userAPI.getUser(userId).then(response => {
+         this.props.setUserProfile(response)
+      })
    }
 
 
    render() {
-
-      return (
-         <>
-            <ContentUser {...this.props} />
-         </>
-      )
+      return <ContentUser {...this.props} />
    }
 }
 

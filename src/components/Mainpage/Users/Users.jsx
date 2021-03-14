@@ -2,6 +2,7 @@ import React from "react";
 import styles from './Users.module.css'
 import userPhoto from '../../../assets/images/userAvatarNull.png'
 import { NavLink } from "react-router-dom";
+import { userAPI } from "../../../API/api";
 
 
 
@@ -38,8 +39,29 @@ let Users = (props) => {
                         </NavLink>
                         {
                            user.followed ?
-                              <button onClick={() => { props.unfollow(user.id) }}>unFollow</button>
-                              : <button onClick={() => { props.follow(user.id) }}>Follow</button>
+                              <button onClick={() => {
+
+                                 userAPI.setUnfollowUser(user.id)
+                                    .then(response => {
+                                       if (response.data.resultCode === 0) {
+                                          debugger
+                                          props.unfollow(user.id)
+                                       }
+                                    })
+
+
+                              }}>unFollow</button>
+                              : <button onClick={() => {
+                                 userAPI.setFollowUser(user.id)
+                                    .then(response => {
+                                       debugger
+                                       if (response.data.resultCode === 0) {
+                                          debugger
+                                          props.follow(user.id)
+                                       }
+                                    })
+
+                              }}>Follow</button>
                         }
                      </div>
                      <div className={styles.user__wrapp__info}>
@@ -52,7 +74,7 @@ let Users = (props) => {
                            <p>{'user.location.city'}</p>
                         </div>
                      </div>
-                  </div>
+                  </div >
                )
             })
          }

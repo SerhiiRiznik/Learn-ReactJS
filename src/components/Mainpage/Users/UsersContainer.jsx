@@ -4,9 +4,9 @@ import {
    follow, setUsers, unfollow,
    setCurrentPage, setTotalUsersCount, setLoading
 } from "../../redux/users-reducer";
-import axios from "axios";
 import Users from './Users';
 import Loader from '../../Loader/Loader';
+import { userAPI } from '../../../API/api';
 
 
 
@@ -15,7 +15,8 @@ class UsersContainer extends React.Component {
    componentDidMount() {
 
       this.props.setLoading(true)
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+
+      userAPI.getUsersPage(this.props.currentPage, this.props.pageSize)
          .then(response => {
             console.log(response);
             this.props.setUsers(response.data.items)
@@ -26,11 +27,11 @@ class UsersContainer extends React.Component {
    }
 
    onPageChanged = (pageNumber) => {
+
       this.props.setLoading(true)
       this.props.setCurrentPage(pageNumber)
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+      userAPI.getUsersPage(pageNumber, this.props.pageSize)
          .then(response => {
-            console.log(response);
             this.props.setUsers(response.data.items)
             this.props.setLoading(false);
 
