@@ -1,56 +1,41 @@
 import React from 'react';
 import { connect } from "react-redux";
 import {
-   follow, setUsers, unfollow,
-   setCurrentPage, setTotalUsersCount, setLoading
+   setUnFollow, setFollow,
+   getUsersPages,
+   getUsersPagesChanged,
 } from "../../redux/users-reducer";
 import Users from './Users';
 import Loader from '../../Loader/Loader';
-import { userAPI } from '../../../API/api';
 
 
 
 class UsersContainer extends React.Component {
 
    componentDidMount() {
+      this.props.getUsersPages(this.props.currentPage, this.props.pageSize)
 
-      this.props.setLoading(true)
-
-      userAPI.getUsersPage(this.props.currentPage, this.props.pageSize)
-         .then(response => {
-            console.log(response);
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUsersCount(response.data.totalCount)
-            this.props.setLoading(false)
-
-         })
    }
 
    onPageChanged = (pageNumber) => {
-
-      this.props.setLoading(true)
-      this.props.setCurrentPage(pageNumber)
-      userAPI.getUsersPage(pageNumber, this.props.pageSize)
-         .then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.setLoading(false);
-
-         })
+      this.props.getUsersPagesChanged(pageNumber, this.props.pageSize)
    }
 
 
    render() {
+      debugger
       return <>
-         {this.props.isLoading ? <Loader /> : <Users
+         {
+            this.props.isLoading ? <Loader /> : <Users
 
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            currentPage={this.props.currentPage}
-            onPageChanged={this.onPageChanged}
-            users={this.props.users}
-            unfollow={this.props.unfollow}
-            follow={this.props.follow}
-         />}
+               totalUsersCount={this.props.totalUsersCount}
+               pageSize={this.props.pageSize}
+               currentPage={this.props.currentPage}
+               onPageChanged={this.onPageChanged}
+               users={this.props.users}
+               unfollow={this.props.setUnFollow}
+               follow={this.props.setFollow}
+            />}
       </>
    }
 }
@@ -68,12 +53,10 @@ const mapStateToProps = (state) => {
 
 
 const ContainerUsers = connect(mapStateToProps, {
-   follow,
-   unfollow,
-   setUsers,
-   setCurrentPage,
-   setTotalUsersCount,
-   setLoading,
+   setUnFollow,
+   setFollow,
+   getUsersPages,
+   getUsersPagesChanged,
 
 })(UsersContainer)
 

@@ -33,7 +33,7 @@ export const userAPI = {
       return instance.delete(`follow/${userId}`,)
    },
    setFollowUser(userId) {
-      return instance.post(`follow/${userId}`, {},)
+      return instance.post(`follow/${userId}`,)
    },
 
 }

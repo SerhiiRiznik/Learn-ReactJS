@@ -1,3 +1,4 @@
+import { userAPI } from "../../API/api"
 
 const ADD_POST = 'ADD-POST'
 const NEW_POST_TEXT = 'NEW-POST-TEXT'
@@ -61,3 +62,17 @@ export const addLikeCountActionCreater = (index, a) => {
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
 export default userPageReducer
+
+
+
+
+export const setProfilePage = (userId) => {
+   return (dispatch) => {
+
+
+
+      userAPI.getUser(userId).then(response => {
+         dispatch(setUserProfile(response))
+      })
+   }
+}

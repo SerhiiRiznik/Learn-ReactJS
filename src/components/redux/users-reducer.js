@@ -1,3 +1,5 @@
+import { userAPI } from "../../API/api"
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -62,3 +64,58 @@ export const setUsers = (users) => ({ type: SET_USERS, users })
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
 export const setTotalUsersCount = (usersCount) => ({ type: SET_TOTAL_USER_COUNT, usersCount })
 export const setLoading = (loading) => ({ type: SET_LOADING, loading })
+
+
+
+
+
+export const getUsersPages = (currentPage, pageSize) => {
+   return (dispatch) => {
+      dispatch(setLoading(true))
+
+      userAPI.getUsersPage(currentPage, pageSize)
+         .then(response => {
+            console.log(response);
+            dispatch(setUsers(response.data.items))
+            dispatch(setTotalUsersCount(response.data.totalCount))
+            dispatch(setLoading(false))
+
+         })
+   }
+}
+export const getUsersPagesChanged = (pageNumber, pageSize) => {
+   return (dispatch) => {
+      dispatch(setLoading(true))
+      dispatch(setCurrentPage(pageNumber))
+      userAPI.getUsersPage(pageNumber, pageSize)
+         .then(response => {
+            dispatch(setUsers(response.data.items))
+            dispatch(setLoading(false))
+
+         })
+   }
+}
+export const setUnFollow = (userId) => {
+   return (dispatch) => {
+      debugger
+      userAPI.setUnfollowUser(userId)
+         .then(response => {
+            if (response.data.resultCode === 0) {
+               debugger
+               dispatch(unfollow(userId))
+            }
+         })
+   }
+}
+export const setFollow = (userId) => {
+   return (dispatch) => {
+      debugger
+      userAPI.setFollowUser(userId)
+         .then(response => {
+            debugger
+            if (response.data.resultCode === 0) {
+               dispatch(follow(userId))
+            }
+         })
+   }
+}
