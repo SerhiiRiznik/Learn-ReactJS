@@ -8,9 +8,15 @@ const instance = axios.create({
    }
 });
 
-
+export const authAPI = {
+   getUserAuth() {
+      return instance.get(`auth/me`,)
+         .then(response => (response.data))
+   },
+}
 export const userAPI = {
    getUser(userId) {
+
       return instance.get(`profile/` + userId)
          .then(response => (response.data))
    },
@@ -21,14 +27,8 @@ export const userAPI = {
       return instance.get(`profile/` + userId)
          .then(response => (response.data))
    },
-   getUser(userId) {
-      return instance.get(`profile/` + userId)
-         .then(response => (response.data))
-   },
-   getUserAuth() {
-      return instance.get(`auth/me`,)
-         .then(response => (response.data))
-   },
+
+
    setUnfollowUser(userId) {
       return instance.delete(`follow/${userId}`,)
    },
@@ -37,3 +37,4 @@ export const userAPI = {
    },
 
 }
+

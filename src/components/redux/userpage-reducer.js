@@ -61,7 +61,7 @@ export const addLikeCountActionCreater = (index, a) => {
 }
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
-export default userPageReducer
+
 
 
 
@@ -70,9 +70,10 @@ export const setProfilePage = (userId) => {
    return (dispatch) => {
 
 
-
       userAPI.getUser(userId).then(response => {
          dispatch(setUserProfile(response))
       })
    }
 }
+
+export default userPageReducer

@@ -4,9 +4,10 @@ import Setting from "./Setting/Setting";
 import { Route } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import UserInfo from "./Content/UserInfo/UserInfo";
-import ContainerContentDialogs from "./Dialogs/ContainerContentDialogs";
 import UsersContainer from "./Users/UsersContainer";
 import ContentUserContainer from "./Content/ContentUserContainer";
+
+import ContainerContentDialogs from "./Dialogs/ContainerContentDialogs";
 
 
 
@@ -23,6 +24,7 @@ const Mainpage = () => {
 
 
                   <Route path='/about' render={() => <UserInfo />} />
+
                   <Route path='/profile/:userId?' render={() => <ContentUserContainer />} />
                   <Route path='/dialogs' render={() => <ContainerContentDialogs />} />
                   <Route path='/news' render={() => <ContentNews />} />

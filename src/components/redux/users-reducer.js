@@ -55,8 +55,6 @@ let UsersReducer = (state = initialState, action) => {
 
 }
 
-export default UsersReducer
-
 
 export const follow = (userId) => ({ type: FOLLOW, userId })
 export const unfollow = (userId) => ({ type: UNFOLLOW, userId })
@@ -97,11 +95,11 @@ export const getUsersPagesChanged = (pageNumber, pageSize) => {
 }
 export const setUnFollow = (userId) => {
    return (dispatch) => {
-      debugger
+
       userAPI.setUnfollowUser(userId)
          .then(response => {
             if (response.data.resultCode === 0) {
-               debugger
+
                dispatch(unfollow(userId))
             }
          })
@@ -109,13 +107,17 @@ export const setUnFollow = (userId) => {
 }
 export const setFollow = (userId) => {
    return (dispatch) => {
-      debugger
+
       userAPI.setFollowUser(userId)
          .then(response => {
-            debugger
+
             if (response.data.resultCode === 0) {
                dispatch(follow(userId))
             }
          })
    }
 }
+
+
+
+export default UsersReducer

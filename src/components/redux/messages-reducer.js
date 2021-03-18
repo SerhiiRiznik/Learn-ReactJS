@@ -44,7 +44,7 @@ const messagesReducer = (state = initialState, action) => {
    switch (action.type) {
 
       case SEND_MESSAG:
-         debugger
+
          return {
             ...state,
             massegText: '',

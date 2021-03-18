@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import { setProfilePage } from '../../redux/userpage-reducer'
 import ContentUser from './ContentUser'
 
@@ -10,27 +10,37 @@ import ContentUser from './ContentUser'
 class ContentUserContainer extends React.Component {
 
    componentDidMount() {
-      let userId = this.props.match.params.userId
 
+      let userId = this.props.match.params.userId
       if (!userId) {
 
-         userId = this.props.auth.userId
+         userId = 15738
       }
+
       this.props.setProfilePage(userId)
+
    }
 
 
+
    render() {
+
+      if (!this.props.auth) return <Redirect to='/login' />
       return <ContentUser {...this.props} />
    }
 }
 
 let mapStateToProps = (state) => {
    return {
+      auth: state.auth,
       userProfile: state.userPage.userProfile,
-      auth: state.auth
+
    }
 }
+
+
+
+
 let ContentUserWithRouting = withRouter(ContentUserContainer)
 
 export default connect(mapStateToProps, { setProfilePage })(ContentUserWithRouting)

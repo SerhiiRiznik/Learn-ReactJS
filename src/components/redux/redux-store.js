@@ -7,10 +7,11 @@ import UsersReducer from './users-reducer';
 import authReducer from './auth-reducer';
 
 let reducers = combineReducers({
+   auth: authReducer,
    _messages: messagesReducer,
    userPage: userPageReducer,
    usersPage: UsersReducer,
-   auth: authReducer,
+
 
 })
 
