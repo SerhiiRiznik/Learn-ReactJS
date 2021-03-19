@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
+import { compose } from 'redux';
+import { withAutorized } from '../../HOC/withAuthorized';
 import { newMessagActionCreater, sentMessagActionCreater } from '../../redux/messages-reducer';
 import ContentDialogs from "./ContentDialogs";
 
@@ -26,7 +28,7 @@ const mapStateToProps = (state) => {
       dialogItem: state._messages.dialogItem,
       _messag: state._messages._messag,
       messagText: state._messages.massegText,
-      authUser: state.auth.authorized
+
    }
 
 }
@@ -41,7 +43,13 @@ const mapDispatchToProps = (dispatch) => {
    }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContainerContentDialogs)
+
+export default compose(
+
+   connect(mapStateToProps, mapDispatchToProps),
+   withAutorized,
+
+)(ContainerContentDialogs)
 
 
 

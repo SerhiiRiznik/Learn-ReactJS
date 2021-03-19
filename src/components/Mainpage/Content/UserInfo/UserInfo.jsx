@@ -1,6 +1,7 @@
 import user from './User.module.css'
 import lfj from '../../../../assets/images/lookingForJob.png'
 import hj from '../../../../assets/images/businessman.png'
+import UserStatus from './UserStatus'
 
 const UserInfo = (props) => {
 
@@ -16,7 +17,14 @@ const UserInfo = (props) => {
                <div className={user.content__user__info}>
                   <p><b>User Name:</b> {props.userProfile.fullName} </p>
 
-                  <p><b>About me:</b> {props.userProfile.aboutMe} </p>
+
+
+                  <UserStatus aboutMe={'userProfile.aboutMe'} />
+
+
+
+
+
                   <ul><b>Contacts:</b>
                      <li><b>facebook:</b> {props.userProfile.contacts.facebook}</li>
                      <li><b>github:</b> {props.userProfile.contacts.github}</li>

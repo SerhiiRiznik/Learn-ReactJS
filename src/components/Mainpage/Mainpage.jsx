@@ -8,6 +8,7 @@ import UsersContainer from "./Users/UsersContainer";
 import ContentUserContainer from "./Content/ContentUserContainer";
 
 import ContainerContentDialogs from "./Dialogs/ContainerContentDialogs";
+import Login from "../Login/login";
 
 
 
@@ -31,6 +32,8 @@ const Mainpage = () => {
                   <Route path='/music' render={() => <ContentMusic />} />
                   <Route path='/settings' render={() => <Setting />} />
                   <Route path='/users' render={() => <UsersContainer />} />
+
+                  <Route path='/login' render={() => <Login />} />
 
                </div>
             </div>

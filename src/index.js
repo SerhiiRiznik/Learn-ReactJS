@@ -6,8 +6,7 @@ import App from './App';
 import store from './components/redux/redux-store'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Login from './components/Login/login';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
 
@@ -15,9 +14,8 @@ ReactDOM.render(
 
       <BrowserRouter>
 
-         <Route path='/login' render={() => <Login />} />
-         <Route path='/' render={() => <App />} />
-         {/* <App /> */}
+         <App />
+
       </BrowserRouter>
    </Provider>
 

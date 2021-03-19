@@ -27,8 +27,6 @@ const ContentDialogs = (props) => {
    }
 
 
-   if (!props.authUser) return <Redirect to='/login' />
-
    return (
       <div >
          <div className={contentDialogs.wrapper}>
