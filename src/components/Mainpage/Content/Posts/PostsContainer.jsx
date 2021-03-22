@@ -1,5 +1,5 @@
 
-import { addPostActionCreater, newPostTextActionCreater } from '../../../redux/userpage-reducer';
+import { addPostActionCreater } from '../../../redux/userpage-reducer';
 import { connect } from 'react-redux';
 import Posts from "./Posts";
 
@@ -15,12 +15,9 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
 
    return {
-      addPost: () => {
-         dispatch(addPostActionCreater())
+      addPost: (text) => {
+         dispatch(addPostActionCreater(text))
       },
-      newPostText: (text) => {
-         dispatch(newPostTextActionCreater(text))
-      }
    }
 }
 

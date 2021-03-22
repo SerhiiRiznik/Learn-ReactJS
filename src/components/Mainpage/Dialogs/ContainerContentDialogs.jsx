@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from "react-redux";
 import { compose } from 'redux';
 import { withAutorized } from '../../HOC/withAuthorized';
-import { newMessagActionCreater, sentMessagActionCreater } from '../../redux/messages-reducer';
+import { sentMessag } from '../../redux/messages-reducer';
 import ContentDialogs from "./ContentDialogs";
 
 
@@ -32,21 +32,12 @@ const mapStateToProps = (state) => {
    }
 
 }
-const mapDispatchToProps = (dispatch) => {
-   return {
-      sentMessag: () => {
-         dispatch(sentMessagActionCreater())
-      },
-      newMassegText: (messag) => {
-         dispatch(newMessagActionCreater(messag))
-      },
-   }
-}
+
 
 
 export default compose(
 
-   connect(mapStateToProps, mapDispatchToProps),
+   connect(mapStateToProps, { sentMessag }),
    withAutorized,
 
 )(ContainerContentDialogs)

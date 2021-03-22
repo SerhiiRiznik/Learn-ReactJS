@@ -11,7 +11,12 @@ const ContentUser = (props) => {
       return (
 
          <div>
-            <UserInfo userProfile={props.userProfile} />
+            <UserInfo
+               userProfile={props.userProfile}
+               updateStatus={props.updateStatus}
+               status={props.status}
+
+            />
             <PostsContainer />
          </div>
 

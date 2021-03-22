@@ -1,6 +1,5 @@
 
 const SEND_MESSAG = 'SEND-MESSAG'
-const NEW_MESSAG_TEXT = 'NEW-MESSAG-TEXT'
 
 let initialState = {
    dialogItem: [
@@ -34,7 +33,6 @@ let initialState = {
       { id: 8, message: '' },
       { id: 9, message: 'asdasd' },
    ],
-   massegText: ''
 }
 
 const messagesReducer = (state = initialState, action) => {
@@ -47,27 +45,18 @@ const messagesReducer = (state = initialState, action) => {
 
          return {
             ...state,
-            massegText: '',
-            _messag: [...state._messag, { id: 20, message: state.massegText }]
+            _messag: [...state._messag, { id: 20, message: action.messag }],
+
          }
 
-
-      case NEW_MESSAG_TEXT:
-
-         return {
-            ...state,
-            massegText: action.messag
-         }
 
       default:
          return state
    }
 }
-export const newMessagActionCreater = (text) => {
-   return { type: 'NEW-MESSAG-TEXT', messag: text }
-}
-export const sentMessagActionCreater = () => {
-   return { type: 'SEND-MESSAG' }
+
+export const sentMessag = (text) => {
+   return { type: SEND_MESSAG, messag: text }
 }
 
 

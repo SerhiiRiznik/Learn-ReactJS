@@ -1,15 +1,10 @@
 import post from './Post.module.css'
 import React from 'react'
-import { addLikeCountActionCreater } from '../../../../redux/userpage-reducer'
 
 
 const Post = (props) => {
    // console.log(props.index)
-   let addLike = (e) => {
-      let a = e.target
-      // console.log(a)
-      props.dispatch(addLikeCountActionCreater(props.index, a))
-   }
+
 
    return (
       <div className={post.item}>
@@ -23,7 +18,7 @@ const Post = (props) => {
          <p>
             {/* age: {props.age} */}
          </p>
-         <p onClick={addLike}
+         <p
          >
             Like: {props.likesCount}
          </p>

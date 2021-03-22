@@ -14,6 +14,7 @@ export const authAPI = {
          .then(response => (response.data))
    },
 }
+
 export const userAPI = {
    getUser(userId) {
 
@@ -23,6 +24,13 @@ export const userAPI = {
    getUsersPage(currentPage, pageSize) {
       return instance.get(`users?page=${currentPage}&count=${pageSize}`,)
    },
+
+
+
+
+}
+export const userPageAPI = {
+
    getFollow(userId) {
       return instance.get(`profile/` + userId)
          .then(response => (response.data))
@@ -36,5 +44,14 @@ export const userAPI = {
       return instance.post(`follow/${userId}`,)
    },
 
-}
+   updateStatus(userStatus) {
 
+      return instance.put(`/profile/status`, { status: userStatus })
+
+   },
+   status(userIdStatus) {
+
+      return instance.get(`/profile/status/${userIdStatus}`)
+   }
+
+}

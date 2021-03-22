@@ -19,7 +19,11 @@ const UserInfo = (props) => {
 
 
 
-                  <UserStatus aboutMe={'userProfile.aboutMe'} />
+                  <UserStatus
+                     aboutMe={props.userProfile.aboutMe}
+                     updateStatus={props.updateStatus}
+                     userStatus={props.status}
+                  />
 
 
 
