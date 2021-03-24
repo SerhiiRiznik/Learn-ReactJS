@@ -1,4 +1,4 @@
-import styles from './Loader.module.css'
+import styles from '../Loader/Loader.module.css'
 
 let Loader = () => {
    return (

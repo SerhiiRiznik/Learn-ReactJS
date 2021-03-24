@@ -2,6 +2,8 @@ import React from 'react'
 import Post from './Post/Post';
 import posts from './Posts.module.css';
 import { Form, Field } from 'react-final-form'
+import { minValue, composeValidators } from '../../../common/FormValidated/FormValidate';
+
 
 
 
@@ -21,6 +23,7 @@ const Posts = (props) => {
 
    let formSubmit = (value) => {
       console.log('submit');
+      console.log(value);
       props.addPost(value.postText)
    }
    return (
@@ -45,16 +48,26 @@ const NewPostForm = (props) => {
    return (
       <Form
          onSubmit={props.onSubmit}
-         validate={(validate) => {
-            console.log(validate)
-         }}
       >
-         {({ handleSubmit }) => (
+         {({ handleSubmit, value }) => (
             <form onSubmit={handleSubmit}>
-               <Field component='textarea' name='postText' />
-
+               <Field
+                  name='postText'
+                  placeholder='Enter post text'
+                  validate={composeValidators(minValue(0))}
+               >
+                  {({ input, meta, placeholder }) => {
+                     return (
+                        <div>
+                           <textarea {...input} type="textarea" placeholder={placeholder} />
+                           { meta.error && meta.active && <span>{meta.error}</span>}
+                        </div>
+                     )
+                  }}
+               </Field>
                <button type='submit'>Submit</button>
             </form>
+
          )}
       </Form >
    )

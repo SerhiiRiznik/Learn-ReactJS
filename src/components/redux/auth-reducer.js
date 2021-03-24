@@ -1,4 +1,4 @@
-import { authAPI } from "../../API/api"
+import { authorized } from "../../API/api"
 
 let SET_AUTH_USER = 'SET_AUTH_USER'
 
@@ -39,17 +39,33 @@ export const setAuthUser = (authorized, userId, email, login) => ({ type: SET_AU
 
 
 export const setAuthorized = () => {
-
    return (dispatch) => {
-
-      authAPI.getUserAuth()
+      authorized.getUserAuth()
          .then(response => {
             let { id, email, login } = response.data
-            if (response.resultCode === 1) {
-               dispatch(setAuthUser(false))
-            } else {
+            if (response.resultCode === 0) {
+               console.log('get User Auth if ok');
                dispatch(setAuthUser(true, id, email, login))
+            }
+         })
+   }
+}
 
+export const Login = (email, password, rememderMe, captcha) => {
+   return (dispatch) => {
+      authorized.login(email, password, rememderMe)
+         .then(response => {
+            dispatch(setAuthorized())
+         })
+   }
+}
+export const Logout = () => {
+   return (dispatch) => {
+
+      authorized.logout()
+         .then(response => {
+            if (response.data.resultCode === 0) {
+               dispatch(setAuthUser(false, null, null, null))
             }
          })
 

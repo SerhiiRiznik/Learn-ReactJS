@@ -6,7 +6,7 @@ import {
    getUsersPagesChanged,
 } from "../../redux/users-reducer";
 import Users from './Users';
-import Loader from '../../Loader/Loader';
+import Loader from '../../common/Loader/Loader';
 import { compose } from 'redux';
 
 

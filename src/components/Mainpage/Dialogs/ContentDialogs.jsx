@@ -1,5 +1,6 @@
 import React from 'react'
 import { Field, Form } from 'react-final-form';
+import { composeValidators, minValue } from '../../common/FormValidated/FormValidate';
 import contentDialogs from './ContentDialogs.module.css'
 import DialogItem from './Dialog/DialogItem';
 import MessageItem from './Message/MessageItem';
@@ -44,7 +45,23 @@ const MessagForm = (props) => {
       <Form onSubmit={props.onSubmit}>
          {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-               <Field className={contentDialogs.newMessag} name='text' component="textarea" />
+               <Field
+
+                  name='text'
+                  placeholder='Enter your messeg'
+                  validate={composeValidators(minValue(0))}
+               >
+
+                  {({ input, meta, placeholder }) => (
+                     <div>
+                        <textarea {...input}
+                           className={contentDialogs.newMessag}
+                           type="textarea" placeholder={placeholder} />
+                        { meta.error && meta.active && <span>{meta.error}</span>}
+                     </div>
+                  )}
+
+               </Field>
 
                <button className={contentDialogs.addMessag}>Отправить</button>
             </form>

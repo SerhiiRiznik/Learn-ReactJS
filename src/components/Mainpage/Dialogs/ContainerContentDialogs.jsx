@@ -10,7 +10,6 @@ class ContainerContentDialogs extends React.Component {
 
 
    render() {
-
       return (
          <ContentDialogs {...this.props} />
       )
@@ -37,9 +36,8 @@ const mapStateToProps = (state) => {
 
 export default compose(
 
-   connect(mapStateToProps, { sentMessag }),
    withAutorized,
-
+   connect(mapStateToProps, { sentMessag }),
 )(ContainerContentDialogs)
 
 

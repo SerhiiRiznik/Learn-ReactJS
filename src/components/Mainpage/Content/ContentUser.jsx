@@ -1,7 +1,7 @@
 import React from 'react'
 import UserInfo from './UserInfo/UserInfo';
 import PostsContainer from "./Posts/PostsContainer";
-import Loader from '../../Loader/Loader';
+import Loader from '../../common/Loader/Loader';
 
 const ContentUser = (props) => {
 

@@ -8,12 +8,7 @@ const instance = axios.create({
    }
 });
 
-export const authAPI = {
-   getUserAuth() {
-      return instance.get(`auth/me`,)
-         .then(response => (response.data))
-   },
-}
+
 
 export const userAPI = {
    getUser(userId) {
@@ -50,8 +45,24 @@ export const userPageAPI = {
 
    },
    status(userIdStatus) {
-
       return instance.get(`/profile/status/${userIdStatus}`)
    }
 
+}
+
+
+export const authorized = {
+   getUserAuth() {
+      return instance.get(`auth/me`,)
+         .then(response => (response.data))
+   },
+
+   login(email, password, rememderMe, captcha = true) {
+      return instance.post(`auth/login`, { email, password, rememderMe, captcha })
+
+   },
+   logout() {
+      return instance.delete(`auth/login`)
+
+   },
 }

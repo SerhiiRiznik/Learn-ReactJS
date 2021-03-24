@@ -1,8 +1,10 @@
 import React from 'react'
+import { Redirect } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 
 const Header = (props) => {
-  
+   
    if (!props.authUser.authorized) {
       return (
          <div className=' container'>
@@ -14,14 +16,15 @@ const Header = (props) => {
                      <li className='nav-item'></li>
                      <li className='nav-item'></li>
                      <li className='nav-item'>
-                        <button className='btn btn-outline-secondary' type="button">
-                           LogIn
-                        </button></li>
+                        <NavLink className='btn btn-outline-secondary' to='login'>LogIn</NavLink>
+                        </li>
 
                   </ul>
                </div>
             </nav>
+            <Redirect to='/login' />
          </div>
+         
       )
    } else {
       return (
@@ -38,7 +41,10 @@ const Header = (props) => {
                      {/* <li className='nav-item'>Login: {props.authUser.login}</li> */}
                      <li style={{ paddingLeft: '5px' }} className='nav-item'>Email: {props.authUser.email}</li>
                      <li style={{ paddingLeft: '5px' }} className='nav-item'>
-                        <button style={{ paddingLeft: '5px' }} className='btn btn-outline-secondary' type="button">
+                        <button style={{ paddingLeft: '5px' }} className='btn btn-outline-secondary' 
+                        type="button"
+                        onClick={props.Logout}
+                        >
                            LogOut
                            
                         </button>
