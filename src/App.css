@@ -137,7 +137,6 @@ h1, h2, h3, h4, h5, h6 {
 .mainpage .mainpage__wrapper .mainpage__navbar {
   font-weight: 600;
   text-align: left;
-  width: 30%;
   margin: 0px 20px;
   background-color: #fff;
   height: 400px;
@@ -193,10 +192,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   margin: 0 0 0 10px;
   text-align: left;
-}
-
-.wrapper-content {
-  width: 70%;
 }
 
 .footer {

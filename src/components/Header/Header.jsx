@@ -7,30 +7,27 @@ const Header = (props) => {
    
    if (!props.authUser.authorized) {
       return (
-         <div className=' container'>
-            <nav className='d'>
-               <div className='d'>
-                  <ul className='nav nav-tabs justify-content-end' style={{ height: '50px' }}>
+         <nav className='navbar container justify-content-end'>
+               
+                  <ul className='nav nav-tabs' style={{ height: '50px' }}>
 
-                     <li className='nav-item '></li>
+                     <li className='nav-item'></li>
                      <li className='nav-item'></li>
                      <li className='nav-item'></li>
                      <li className='nav-item'>
-                        <NavLink className='btn btn-outline-secondary' to='login'>LogIn</NavLink>
+                  <NavLink className='btn btn-outline-secondary nav-link' to='login'>LogIn</NavLink>
                         </li>
 
                   </ul>
-               </div>
+               
             </nav>
-            <Redirect to='/login' />
-         </div>
-         
+
       )
    } else {
       return (
-         <div className=' container'>
-            <nav className='d'>
-               <div className='d'>
+         
+            <nav className='navbar container justify-content-end'>
+               
                   {/* <img className='' style={{ width: '100px' }} src='https://yoursite.com/wp-content/uploads/2020/06/logo-ys.png'></img> */}
                   <ul className='nav nav-tabs justify-content-end align-items-center' style={{ height: '50px' }}>
 
@@ -50,9 +47,7 @@ const Header = (props) => {
                         </button>
                      </li>
                   </ul>
-               </div>
             </nav>
-         </div>
       );
    }
 

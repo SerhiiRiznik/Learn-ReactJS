@@ -41,3 +41,7 @@
 .visited{
    border: 2px solid red !important;
 }
+.error{
+   font-weight: 600;
+   color: rgb(184, 0, 0);
+}

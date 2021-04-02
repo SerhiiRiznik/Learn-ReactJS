@@ -1,5 +1,7 @@
 import { authorized } from "../../API/api"
 
+// import { FORM_ERROR } from 'final-form'
+
 let SET_AUTH_USER = 'SET_AUTH_USER'
 
 let initialState = {
@@ -36,11 +38,12 @@ const authReducer = (state = initialState, action) => {
 export const setAuthUser = (authorized, userId, email, login) => ({ type: SET_AUTH_USER, authorized, userId, email, login })
 
 
-
+// console.log([FORM_ERROR]);
+// console.dir([FORM_ERROR]);
 
 export const setAuthorized = () => {
    return (dispatch) => {
-      authorized.getUserAuth()
+      return authorized.getUserAuth()
          .then(response => {
             let { id, email, login } = response.data
             if (response.resultCode === 0) {
@@ -52,11 +55,31 @@ export const setAuthorized = () => {
 }
 
 export const Login = (email, password, rememderMe, captcha) => {
-   return (dispatch) => {
-      authorized.login(email, password, rememderMe)
+
+   let messag
+
+   return async (dispatch) => {
+
+      await authorized.login(email, password, rememderMe)
          .then(response => {
-            dispatch(setAuthorized())
+
+            if (response.data.resultCode === 0) {
+
+               dispatch(setAuthorized());
+               (response.data.messages.length === 0) ? messag = 'Authorization is successful' : messag = response.data.messages
+               return messag
+            } else if (response.data.resultCode === 1) {
+
+
+               return messag = response.data.messages
+            } else {
+
+
+               return messag = response.data.messages
+            }
+
          })
+      return messag
    }
 }
 export const Logout = () => {

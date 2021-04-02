@@ -5,6 +5,7 @@ import userPageReducer from './userpage-reducer'
 import messagesReducer from './messages-reducer'
 import UsersReducer from './users-reducer';
 import authReducer from './auth-reducer';
+import appReducer from './app-reducer';
 
 
 
@@ -13,6 +14,7 @@ let reducers = combineReducers({
    _messages: messagesReducer,
    userPage: userPageReducer,
    usersPage: UsersReducer,
+   app: appReducer,
 
 
 })

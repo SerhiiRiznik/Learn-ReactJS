@@ -16,9 +16,12 @@ class ContentUserContainer extends React.Component {
       let userId = this.props.match.params.userId
 
       if (!userId) {
-
-         userId = 15738
-         // userId = this.props.authUser.userId
+         debugger
+         userId = this.props.authUser.userId
+         if (!userId) {
+            debugger
+            this.props.history.push('/login')
+         }
       }
 
       this.props.setProfilePage(userId)

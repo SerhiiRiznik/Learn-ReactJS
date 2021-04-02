@@ -4,24 +4,36 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Footer from './components/Footer/Footer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Mainpage from './components/Mainpage/Mainpage'
+import MainpageContainer from './components/Mainpage/Mainpage'
+import { Route } from 'react-router';
+import Login from './components/Login/login';
+import { connect } from 'react-redux';
 
 
 
-const App = (props) => {
 
+
+
+
+const App = ({ auth }) => {
+  // console.log(auth)
   return (
-
-    <>
-
+    <div className=''>
       <HeaderContainer />
-      <Mainpage />
+
+      <MainpageContainer />
+      {/* <Route path='/login' component={Login} /> */}
+
+      {/* {auth.authorized ? <MainpageContainer /> : <Route path='/login' component={Login} />} */}
       <Footer />
-    </>
+    </div>
+  )
 
-
-  );
 }
 
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
 
-export default App;
+
+export default connect(mapStateToProps, null)(App);

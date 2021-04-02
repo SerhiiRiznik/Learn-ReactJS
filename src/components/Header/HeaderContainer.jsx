@@ -8,7 +8,7 @@ import Header from './Header'
 class HeaderContainer extends React.Component {
 
    componentDidMount() {
-      this.props.setAuthorized()
+
 
    }
 
@@ -27,4 +27,4 @@ let mapStateToProps = (state) => {
    }
 }
 
-export default connect(mapStateToProps, { setAuthorized, Logout })(HeaderContainer)
+export default connect(mapStateToProps, { Logout })(HeaderContainer)
