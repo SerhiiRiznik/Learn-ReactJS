@@ -1,7 +1,5 @@
 import { authorized } from "../../API/api"
 
-// import { FORM_ERROR } from 'final-form'
-
 let SET_AUTH_USER = 'SET_AUTH_USER'
 
 let initialState = {
@@ -37,17 +35,12 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUser = (authorized, userId, email, login) => ({ type: SET_AUTH_USER, authorized, userId, email, login })
 
-
-// console.log([FORM_ERROR]);
-// console.dir([FORM_ERROR]);
-
 export const setAuthorized = () => {
    return (dispatch) => {
       return authorized.getUserAuth()
          .then(response => {
             let { id, email, login } = response.data
             if (response.resultCode === 0) {
-               console.log('get User Auth if ok');
                dispatch(setAuthUser(true, id, email, login))
             }
          })

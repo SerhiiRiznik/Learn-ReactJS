@@ -9,14 +9,10 @@ import MessageItem from './Message/MessageItem';
 
 const ContentDialogs = (props) => {
 
-
    const dialogs = props.dialogItem.map((dialogs, idx) => <DialogItem name={dialogs.name} id={dialogs.id} key={idx} />)
-
-   const messages = props._messag.map((messages, idx) => <MessageItem message={messages.message} key={idx} />)
-
+   const messages = props.messag.map((messages, idx) => <MessageItem message={messages.message} key={idx} />)
 
    let addNewMasseg = (value) => {
-
       props.sentMessag(value.text)
    }
 
@@ -39,19 +35,15 @@ const ContentDialogs = (props) => {
 
 
 const MessagForm = (props) => {
-
-
    return (
       <Form onSubmit={props.onSubmit}>
          {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
                <Field
-
                   name='text'
                   placeholder='Enter your messeg'
                   validate={composeValidators(minValue(0))}
                >
-
                   {({ input, meta, placeholder }) => (
                      <div>
                         <textarea {...input}
@@ -60,13 +52,11 @@ const MessagForm = (props) => {
                         { meta.error && meta.active && <span>{meta.error}</span>}
                      </div>
                   )}
-
                </Field>
-
                <button className={contentDialogs.addMessag}>Отправить</button>
             </form>
          )}
-      </Form >
+      </Form>
 
    )
 

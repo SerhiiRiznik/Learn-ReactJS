@@ -73,7 +73,6 @@ export const getUsersPages = (currentPage, pageSize) => {
 
       userAPI.getUsersPage(currentPage, pageSize)
          .then(response => {
-            console.log(response);
             dispatch(setUsers(response.data.items))
             dispatch(setTotalUsersCount(response.data.totalCount))
             dispatch(setLoading(false))

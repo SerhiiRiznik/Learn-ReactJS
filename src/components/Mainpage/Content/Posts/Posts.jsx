@@ -4,30 +4,20 @@ import posts from './Posts.module.css';
 import { Form, Field } from 'react-final-form'
 import { minValue, composeValidators } from '../../../common/FormValidated/FormValidate';
 
-
-
-
-
 const Posts = (props) => {
-
    let post = props.userPage.map((post, index) => {
       return <Post
-         key={index + 1}
+         key={index}
          index={index + 1}
-         dispatch={props.dispatch}
          massenges={post.messages}
          name={post.name}
       />
    })
 
-
-   let formSubmit = (value) => {
-      console.log('submit');
-      console.log(value);
-      props.addPost(value.postText)
+   const formSubmit = (value) => {
+      props.addPost(value.text)
    }
    return (
-
       <div className={posts.wrrap}>
          <div className={posts.user__new_post}>
             <h2>New post</h2>
@@ -42,9 +32,7 @@ const Posts = (props) => {
    )
 }
 
-
 const NewPostForm = (props) => {
-
    return (
       <Form
          onSubmit={props.onSubmit}
@@ -52,7 +40,7 @@ const NewPostForm = (props) => {
          {({ handleSubmit, value }) => (
             <form onSubmit={handleSubmit}>
                <Field
-                  name='postText'
+                  name='text'
                   placeholder='Enter post text'
                   validate={composeValidators(minValue(0))}
                >
@@ -69,10 +57,8 @@ const NewPostForm = (props) => {
             </form>
 
          )}
-      </Form >
+      </Form>
    )
 }
-
-
 
 export default Posts;

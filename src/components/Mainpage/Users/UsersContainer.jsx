@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import {
    setUnFollow, setFollow,
@@ -8,50 +8,41 @@ import {
 import Users from './Users';
 import Loader from '../../common/Loader/Loader';
 import { compose } from 'redux';
+import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getLoading } from './Selectors';
 
 
 
-class UsersContainer extends React.Component {
+const UsersContainer = (props) => {
+   useEffect(() => {
+      props.getUsersPages(props.currentPage, props.pageSize)
+   }, [props.currentPage, props.pageSize])
 
-   componentDidMount() {
-      this.props.getUsersPages(this.props.currentPage, this.props.pageSize)
-
+   const onPageChanged = (pageNumber) => {
+      props.getUsersPagesChanged(pageNumber, props.pageSize)
    }
 
-   onPageChanged = (pageNumber) => {
-      this.props.getUsersPagesChanged(pageNumber, this.props.pageSize)
-   }
-
-
-   render() {
-
-      return <>
-         {
-            this.props.isLoading ? <Loader /> : <Users
-
-               totalUsersCount={this.props.totalUsersCount}
-               pageSize={this.props.pageSize}
-               currentPage={this.props.currentPage}
-               onPageChanged={this.onPageChanged}
-               users={this.props.users}
-               unfollow={this.props.setUnFollow}
-               follow={this.props.setFollow}
-            />}
-      </>
-   }
+   return (
+      props.isLoading ? <Loader /> : <Users
+         totalUsersCount={props.totalUsersCount}
+         pageSize={props.pageSize}
+         currentPage={props.currentPage}
+         onPageChanged={onPageChanged}
+         users={props.users}
+         unfollow={props.setUnFollow}
+         follow={props.setFollow}
+      />
+   )
 }
-
 
 const mapStateToProps = (state) => {
    return {
-      users: state.usersPage.users,
-      pageSize: state.usersPage.pageSize,
-      totalUsersCount: state.usersPage.totalUsersCount,
-      currentPage: state.usersPage.currentPage,
-      isLoading: state.usersPage.isLoading
+      users: getUsers(state),
+      pageSize: getPageSize(state),
+      totalUsersCount: getTotalUsersCount(state),
+      currentPage: getCurrentPage(state),
+      isLoading: getLoading(state)
    }
 }
-
 
 export default compose(
    connect(mapStateToProps, {
@@ -59,5 +50,4 @@ export default compose(
       setFollow,
       getUsersPages,
       getUsersPagesChanged,
-   })
-)(UsersContainer)
+   }))(UsersContainer)

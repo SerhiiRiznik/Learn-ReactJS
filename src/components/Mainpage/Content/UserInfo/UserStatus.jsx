@@ -1,66 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 
-class UserStatus extends React.Component {
+const UserStatus = (props) => {
+
+   let [editMode, setEditMode] = useState(false)
+   let [status, setStatus] = useState(props.userStatus)
 
 
+   useEffect(() => {
+      setStatus(props.userStatus)
+   }, [props.userStatus])
 
-
-   constructor(props) {
-      super(props)
-      this.toggleEditMode = this.toggleEditMode.bind(this);
-      this.changeStatus = this.changeStatus.bind(this);
+   const changeStatus = (e) => {
+      setStatus(e.target.value)
    }
-   state = {
-      editMode: false,
-      status: ''
-   }
-   changeStatus(e) {
-      this.setState({ status: e.target.value })
-   }
-   toggleEditMode() {
-      if (this.state.editMode) {
-         this.setState({ editMode: false })
-         this.props.updateStatus(this.state.status)
-         // this.forceUpdate()
+
+   const toggleEditMode = () => {
+      if (editMode) {
+         setEditMode(false)
+         props.updateStatus(status)
+
       } else {
-         this.setState({ editMode: true })
+         setEditMode(true)
       }
 
    }
-   componentDidUpdate(prevProps, prevState) {
-      if (prevProps.userStatus !== this.props.userStatus) {
-         this.setState({
-            status: this.state.status
-         })
-      }
-   }
 
-   render() {
-      // debugger
-      return (
-         <>
+   return (
+      <>
+         {
+            (editMode) ?
+               <p><b>Status:</b>
+                  <input className='form-control' autoFocus
+                     onChange={changeStatus}
+                     onBlur={toggleEditMode}
+                     value={status}
+                     type="text" />
+               </p> :
+               <p onDoubleClick={toggleEditMode}>
+                  <b>Status:</b> {!props.userStatus ? <span>Enter your status</span> : props.userStatus}
+               </p>
+         }
 
-            {
-               (this.state.editMode) ?
-                  <p><b>Status:</b>
-                     <input autoFocus
-                        onChange={this.changeStatus}
-                        onBlur={this.toggleEditMode}
-                        value={this.state.status}
-                        type="text" />
-                  </p> :
-                  <p onDoubleClick={this.toggleEditMode}>
-                     <b>Status:</b> {this.props.userStatus}
-                  </p>
-            }
-
-         </>
-      )
-
-
-
-   }
+      </>
+   )
 }
 
 export default UserStatus

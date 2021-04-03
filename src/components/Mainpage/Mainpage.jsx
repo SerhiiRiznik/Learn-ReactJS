@@ -1,5 +1,5 @@
 import { Route, withRouter } from "react-router-dom";
-import React from 'react'
+import React, { useEffect } from 'react'
 import ContentMusic from "./Music/ContentMusic";
 import ContentNews from "./News/ContentNews";
 import Setting from "./Setting/Setting";
@@ -18,41 +18,35 @@ import Loader from '../common/Loader/Loader';
 
 
 
-class MainpageContainer extends React.Component {
+const MainpageContainer = ({ initializeApp, initialized }) => {
 
-   componentDidMount() {
-      this.props.initializeApp()
+   useEffect(() => {
+      initializeApp()
+   })
+
+
+   if (!initialized) {
+      return <Loader />
    }
-
-   render() {
-      if (!this.props.initialized) {
-
-         return <Loader />
-      }
-
-
-      return (
-         <div className='mainpage container'>
-            <div className='row'>
-               <div className='mainpage__wrapper '>
-                  <Navbar />
-                  <div className='wrapper-content col-9'>
-                     <Route path='/about' component={UserInfo} />
-                     <Route exact path='/profile/:userId?' component={ContentUserContainer} />
-                     <Route path='/dialogs' component={ContainerContentDialogs} />
-                     <Route path='/news' component={ContentNews} />
-                     <Route path='/music' component={ContentMusic} />
-                     <Route path='/settings' component={Setting} />
-                     <Route path='/users' component={UsersContainer} />
-                     <Route path='/login' component={Login} />
-                  </div>
+   return (
+      <div className='mainpage container'>
+         <div className='row'>
+            <div className='mainpage__wrapper '>
+               <Navbar />
+               <div className='wrapper-content col-9'>
+                  <Route path='/about' component={UserInfo} />
+                  <Route exact path='/profile/:userId?' component={ContentUserContainer} />
+                  <Route path='/dialogs' component={ContainerContentDialogs} />
+                  <Route path='/news' component={ContentNews} />
+                  <Route path='/music' component={ContentMusic} />
+                  <Route path='/settings' component={Setting} />
+                  <Route path='/users' component={UsersContainer} />
+                  <Route path='/login' component={Login} />
                </div>
             </div>
          </div>
-
-      )
-   }
-
+      </div>
+   )
 }
 const mapStateToProps = (state) => ({
    initialized: state.app.initialized
@@ -60,6 +54,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
    withRouter,
-   connect(mapStateToProps, { initializeApp }))
-   (MainpageContainer)
+   connect(mapStateToProps, { initializeApp }))(MainpageContainer)
 

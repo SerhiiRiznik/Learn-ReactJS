@@ -5,7 +5,6 @@ import UserStatus from './UserStatus'
 
 const UserInfo = (props) => {
 
-
    return (
       <>
          <div className={user.wrrap}>

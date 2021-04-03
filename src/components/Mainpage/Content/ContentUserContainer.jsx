@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux'
@@ -9,39 +9,28 @@ import ContentUser from './ContentUser'
 
 
 
-class ContentUserContainer extends React.Component {
+const ContentUserContainer = (props) => {
 
-   componentDidMount() {
-
-      let userId = this.props.match.params.userId
-
+   useEffect(() => {
+      let userId = props.match.params.userId
       if (!userId) {
-         debugger
-         userId = this.props.authUser.userId
+         userId = props.authUser.userId
          if (!userId) {
-            debugger
-            this.props.history.push('/login')
+            props.history.push('/login')
          }
       }
+      props.setProfilePage(userId)
+      props.setStatus(userId)
+   }, [props.match, props.authUser])
 
-      this.props.setProfilePage(userId)
-      this.props.setStatus(userId)
+   return <ContentUser {...props}
+      updateStatus={props.updateStatus}
+      userStatus={props.userProfile} />
 
-   }
-
-
-
-   render() {
-      return <ContentUser {...this.props}
-         updateStatus={this.props.updateStatus}
-         userStatus={this.props.userProfile} />
-   }
 }
 
 let mapStateToProps = (state) => {
-
    return {
-
       userProfile: state.userPage.userProfile,
       status: state.userPage.userStatus
    }

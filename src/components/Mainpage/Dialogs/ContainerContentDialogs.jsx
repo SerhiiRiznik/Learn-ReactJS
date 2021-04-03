@@ -1,39 +1,26 @@
 import React from 'react'
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withAutorized } from '../../HOC/withAuthorized';
 import { sentMessag } from '../../redux/messages-reducer';
-import ContentDialogs from "./ContentDialogs";
+import ContentDialogs from './ContentDialogs';
+import { getDialogItem, get_messag, getmessagText } from './selectors'
 
 
-class ContainerContentDialogs extends React.Component {
+const ContainerContentDialogs = (props) => {
 
-
-   render() {
-      return (
-         <ContentDialogs {...this.props} />
-      )
-
-   }
+   return <ContentDialogs {...props} />
 }
-
-
-
 
 const mapStateToProps = (state) => {
 
    return {
-
-      dialogItem: state._messages.dialogItem,
-      _messag: state._messages._messag,
-      messagText: state._messages.massegText,
+      dialogItem: getDialogItem(state),
+      messag: get_messag(state),
+      messagText: getmessagText(state),
 
    }
-
 }
-
-
-
 export default compose(
 
    withAutorized,

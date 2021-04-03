@@ -1,5 +1,13 @@
 .loginForm{
-   
+   font-weight: 500;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.loginFormWrap{
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+   align-items: center;
+   padding: 5px 0;
 }
 .loginForm input{
    margin: 0 10px;
@@ -9,39 +17,37 @@
    background-color: rgba(0,0,0,0);
 }
 .loginForm label{
-   width: 100px;
-}
-.loginForm div{
-   height: 50px;
+   width: 170px;
 }
 .loginForm button{
    width: 130px;
-    height: 30px;
-    background: #999999;
-    margin-bottom: 25px;
-    border-radius: 32px;
-    text-align: center;
-    transition: all 0.1s ease-in-out;
+   height: 30px;
+   background: #999999;
+   margin: 25px 0;
+   border-radius: 32px;
+   text-align: center;
+   transition: all 0.1s ease-in-out;
 }
 .loginForm button:hover{
    
-    background: #adadad;
+   background: #adadad;
 }
 .loginForm button:active{
    border: 0px solid #ccc;
    border-radius: 32px;
 }
 
-.loginForm input.active{
-    border-radius: 5px;
-   background-color: rgba(0,0,0,0);
-   border: 2px solid rgb(70, 70, 70);
+input:focus{
+   transition: .3s;
+   border-radius: 5px;
+   background-color: rgba(0, 0, 0, 0);
+   border: 2px solid rgb(90, 90, 90);
 }
 
-.visited{
-   border: 2px solid red !important;
+form .visited{
+   border: 2px solid rgb(100, 0, 0) !important;
 }
 .error{
    font-weight: 600;
-   color: rgb(184, 0, 0);
+   color: rgb(100, 0, 0);
 }

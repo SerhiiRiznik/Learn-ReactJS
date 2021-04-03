@@ -57,7 +57,7 @@ const userPageReducer = (state = initialState, action) => {
    }
 }
 
-export const addPostActionCreater = (text) => {
+export const addPost = (text) => {
    return { type: ADD_POST, text }
 }
 
