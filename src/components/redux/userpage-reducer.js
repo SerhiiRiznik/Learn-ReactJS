@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_USER_STATUS = 'SET_USER_STATUS'
 const UPDATE_USER_STATUS = 'UPDATE_USER_STATUS'
+const SET_USER_PHOTO = 'SET_USER_PHOTO'
 
 let initialState = {
    posts: [
@@ -52,15 +53,23 @@ const userPageReducer = (state = initialState, action) => {
 
          }
       }
-      default:
-         return state;
+      case SET_USER_PHOTO: {
+         return {
+            ...state,
+            userProfile: {
+               ...state.userProfile,
+               photos: action.photo
+            }
+         }
+
+      }
+      default: return state;
    }
 }
 
 export const addPost = (text) => {
    return { type: ADD_POST, text }
 }
-
 
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
@@ -76,30 +85,34 @@ export const setProfilePage = (userId) => {
    }
 }
 
+const setLoadPhoto = (photo) => ({ type: SET_USER_PHOTO, photo })
 
 
-export const updateStatus = (userStatus) => {
-   return (dispatch) => {
+export const loadPhoto = (photo) => async (dispatch) => {
 
-      userPageAPI.updateStatus(userStatus)
-         .then(response => {
-            if (response.data.resultCode === 0) {
-               dispatch(updateUserStatus(userStatus))
-            }
-         })
+   let response = await userAPI.getUsersPhoto(photo)
+   if (response.data.resultCode === 0) {
+      dispatch(setLoadPhoto(response.data.data.photos))
    }
+
 }
-export const setStatus = (userId) => {
-   return (dispatch) => {
 
-      userPageAPI.status(userId)
-         .then(response => {
 
-            if (response.status === 200) {
-               dispatch(setUserStatus(response.data))
-            }
-         })
+export const updateStatus = (userStatus) => async (dispatch) => {
+
+   let response = await userPageAPI.updateStatus(userStatus)
+   if (response.data.resultCode === 0) {
+      dispatch(updateUserStatus(userStatus))
    }
+
+}
+export const setStatus = (userId) => async (dispatch) => {
+
+   let response = await userPageAPI.status(userId)
+   if (response.status === 200) {
+      dispatch(setUserStatus(response.data))
+   }
+
 }
 
 

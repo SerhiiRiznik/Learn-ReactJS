@@ -1,28 +1,30 @@
-import { Route, withRouter } from "react-router-dom";
-import React, { useEffect } from 'react'
+import { Route, Switch } from "react-router-dom";
+import React, { Suspense, useEffect } from 'react'
+import Loader from '../common/Loader/Loader';
+import Info from "./Info/Info";
 import ContentMusic from "./Music/ContentMusic";
 import ContentNews from "./News/ContentNews";
-import Setting from "./Setting/Setting";
 import Navbar from "./Navbar/Navbar";
 import UserInfo from "./Content/UserInfo/UserInfo";
-import UsersContainer from "./Users/UsersContainer";
-import ContentUserContainer from "./Content/ContentUserContainer";
-import ContainerContentDialogs from "./Dialogs/ContainerContentDialogs";
 import Login from "../Login/login";
-
+import ContainerContentDialogs from "./Dialogs/ContainerContentDialogs";
 import { connect } from "react-redux";
 import { compose } from 'redux';
 import { initializeApp } from '../redux/app-reducer'
+import Settings from "../Settings/Settings";
+import { setProfilePage } from "../redux/userpage-reducer";
 
-import Loader from '../common/Loader/Loader';
 
+
+const UsersContainer = React.lazy(() => import('./Users/UsersContainer'));
+const ContentUserContainer = React.lazy(() => import('./Content/ContentUserContainer'));
 
 
 const MainpageContainer = ({ initializeApp, initialized }) => {
 
    useEffect(() => {
       initializeApp()
-   })
+   }, [])
 
 
    if (!initialized) {
@@ -34,14 +36,22 @@ const MainpageContainer = ({ initializeApp, initialized }) => {
             <div className='mainpage__wrapper '>
                <Navbar />
                <div className='wrapper-content col-9'>
-                  <Route path='/about' component={UserInfo} />
-                  <Route exact path='/profile/:userId?' component={ContentUserContainer} />
-                  <Route path='/dialogs' component={ContainerContentDialogs} />
-                  <Route path='/news' component={ContentNews} />
-                  <Route path='/music' component={ContentMusic} />
-                  <Route path='/settings' component={Setting} />
-                  <Route path='/users' component={UsersContainer} />
-                  <Route path='/login' component={Login} />
+                  <Switch>
+                     <Route path='/about' component={UserInfo} />
+
+                     <Route path='/dialogs' component={ContainerContentDialogs} />
+                     <Route path='/news' component={ContentNews} />
+                     <Route path='/music' component={ContentMusic} />
+                     <Route path='/settings' component={Settings} />
+                     <Route exact path='/' component={Info} />
+
+                     <Route path='/login' component={Login} />
+
+                     <Suspense fallback={<div>Loading...</div>}>
+                        <Route path='/profile/:userId?' component={ContentUserContainer} />
+                        <Route path='/users' component={UsersContainer} />
+                     </Suspense>
+                  </Switch>
                </div>
             </div>
          </div>
@@ -49,10 +59,10 @@ const MainpageContainer = ({ initializeApp, initialized }) => {
    )
 }
 const mapStateToProps = (state) => ({
-   initialized: state.app.initialized
+   initialized: state.app.initialized,
+   profile: state.userPage.userProfile,
 })
 
 export default compose(
-   withRouter,
-   connect(mapStateToProps, { initializeApp }))(MainpageContainer)
+   connect(mapStateToProps, { initializeApp, setProfilePage }))(MainpageContainer)
 

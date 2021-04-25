@@ -8,8 +8,9 @@ const Navbar = (props) => {
             <li><NavLink to='/dialogs' className='nav-link'>Massagers</NavLink></li>
             <li><NavLink to='/news' className='nav-link'>News</NavLink></li>
             <li><NavLink to='/music' className='nav-link'>Music</NavLink></li><br />
+            <li><NavLink to='/settings' className='nav-link'>Settings</NavLink></li><br />
             <li><NavLink to='/users' className='nav-link'>Users</NavLink></li><br />
-            <li><NavLink to='/settings' className='nav-link'>Setting</NavLink></li>
+            <li><NavLink to='/' className='nav-link'>Info</NavLink></li>
          </ul>
       </div>
    )

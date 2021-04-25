@@ -29,7 +29,7 @@ const UserStatus = (props) => {
    return (
       <>
          {
-            (editMode) ?
+            (editMode && props.isOwner) ?
                <p><b>Status:</b>
                   <input className='form-control' autoFocus
                      onChange={changeStatus}
@@ -37,9 +37,9 @@ const UserStatus = (props) => {
                      value={status}
                      type="text" />
                </p> :
-               <p onDoubleClick={toggleEditMode}>
-                  <b>Status:</b> {!props.userStatus ? <span>Enter your status</span> : props.userStatus}
-               </p>
+               <span onDoubleClick={toggleEditMode}>
+                  <b>Status:</b> {!props.userStatus ? <small>Enter your status</small> : props.userStatus}
+               </span>
          }
 
       </>

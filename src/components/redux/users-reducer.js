@@ -6,13 +6,16 @@ const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURENT_PAGE'
 const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT'
 const SET_LOADING = 'SET_LOADING'
+const SET_PORTION_NUMBER = 'SET_PORTION_NUMBER'
 
 let initialState = {
+   isLoading: false,
    users: [],
    pageSize: 5,
-   totalUsersCount: 0,
+   totalUsersCount: null,
    currentPage: 1,
-   isLoading: false,
+   portionSize: 10,
+   portionNumber: 1,
 }
 
 
@@ -47,6 +50,8 @@ let UsersReducer = (state = initialState, action) => {
          return { ...state, currentPage: action.currentPage }
       case SET_TOTAL_USER_COUNT:
          return { ...state, totalUsersCount: action.usersCount }
+      case SET_PORTION_NUMBER:
+         return { ...state, portionNumber: action.portionNumber }
       case SET_LOADING:
          return { ...state, isLoading: action.loading }
       default:
@@ -62,59 +67,52 @@ export const setUsers = (users) => ({ type: SET_USERS, users })
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
 export const setTotalUsersCount = (usersCount) => ({ type: SET_TOTAL_USER_COUNT, usersCount })
 export const setLoading = (loading) => ({ type: SET_LOADING, loading })
+export const setPortionNumber = (portionNumber) => ({ type: SET_PORTION_NUMBER, portionNumber })
 
 
 
 
 
 export const getUsersPages = (currentPage, pageSize) => {
-   return (dispatch) => {
+   return async (dispatch) => {
       dispatch(setLoading(true))
 
-      userAPI.getUsersPage(currentPage, pageSize)
-         .then(response => {
-            dispatch(setUsers(response.data.items))
-            dispatch(setTotalUsersCount(response.data.totalCount))
-            dispatch(setLoading(false))
+      let response = await userAPI.getUsersPage(currentPage, pageSize)
 
-         })
+      dispatch(setUsers(response.data.items))
+      dispatch(setTotalUsersCount(response.data.totalCount))
+      dispatch(setLoading(false))
+
+
    }
 }
 export const getUsersPagesChanged = (pageNumber, pageSize) => {
-   return (dispatch) => {
+   return async (dispatch) => {
       dispatch(setLoading(true))
       dispatch(setCurrentPage(pageNumber))
-      userAPI.getUsersPage(pageNumber, pageSize)
-         .then(response => {
-            dispatch(setUsers(response.data.items))
-            dispatch(setLoading(false))
+      let response = await userAPI.getUsersPage(pageNumber, pageSize)
 
-         })
+      dispatch(setUsers(response.data.items))
+      dispatch(setLoading(false))
+
+
    }
 }
-export const setUnFollow = (userId) => {
-   return (dispatch) => {
+export const setUnFollow = (userId) => async (dispatch) => {
+   let response = await userPageAPI.setUnfollowUser(userId)
 
-      userPageAPI.setUnfollowUser(userId)
-         .then(response => {
-            if (response.data.resultCode === 0) {
-
-               dispatch(unfollow(userId))
-            }
-         })
+   if (response.data.resultCode === 0) {
+      dispatch(unfollow(userId))
    }
+
 }
-export const setFollow = (userId) => {
-   return (dispatch) => {
+export const setFollow = (userId) => async (dispatch) => {
+   let response = await userPageAPI.setFollowUser(userId)
 
-      userPageAPI.setFollowUser(userId)
-         .then(response => {
-
-            if (response.data.resultCode === 0) {
-               dispatch(follow(userId))
-            }
-         })
+   if (response.data.resultCode === 0) {
+      dispatch(follow(userId))
    }
+
 }
 
 

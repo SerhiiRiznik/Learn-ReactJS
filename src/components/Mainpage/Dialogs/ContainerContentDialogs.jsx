@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { withAutorized } from '../../HOC/withAuthorized';
 import { sentMessag } from '../../redux/messages-reducer';
 import ContentDialogs from './ContentDialogs';
-import { getDialogItem, get_messag, getmessagText } from './selectors'
+import { getDialogItem, getMessag, } from './selectors'
 
 
 const ContainerContentDialogs = (props) => {
@@ -16,9 +16,7 @@ const mapStateToProps = (state) => {
 
    return {
       dialogItem: getDialogItem(state),
-      messag: get_messag(state),
-      messagText: getmessagText(state),
-
+      messag: getMessag(state),
    }
 }
 export default compose(

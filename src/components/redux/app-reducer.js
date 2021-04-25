@@ -1,3 +1,4 @@
+
 import { setAuthorized } from "./auth-reducer"
 
 
@@ -11,15 +12,14 @@ let initialState = {
 
 const appReducer = (state = initialState, action) => {
 
-
-
    switch (action.type) {
 
       case SET_INITIALIZED:
          return {
             ...state,
-            initialized: true
+            initialized: true,
          }
+
 
       default:
          return state
@@ -30,9 +30,10 @@ const appReducer = (state = initialState, action) => {
 
 export const setInitialized = () => ({ type: SET_INITIALIZED })
 
+
 export const initializeApp = () => {
 
-   return (dispatch) => {
+   return async (dispatch) => {
 
       let promise = dispatch(setAuthorized())
 
@@ -43,6 +44,8 @@ export const initializeApp = () => {
 
    }
 }
+
+
 
 
 export default appReducer

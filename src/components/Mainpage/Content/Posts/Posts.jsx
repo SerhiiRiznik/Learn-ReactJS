@@ -16,6 +16,7 @@ const Posts = (props) => {
 
    const formSubmit = (value) => {
       props.addPost(value.text)
+      value.text = ""
    }
    return (
       <div className={posts.wrrap}>

@@ -14,6 +14,7 @@ const ContentDialogs = (props) => {
 
    let addNewMasseg = (value) => {
       props.sentMessag(value.text)
+      value.text = ''
    }
 
    return (

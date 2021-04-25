@@ -17,7 +17,7 @@ let initialState = {
       { id: 8, name: 'Kolya' },
       { id: 9, name: 'Vasia' },
    ],
-   _messag: [
+   messag: [
       { id: 1, message: 'Hi, i`m Sveta' },
       { id: 2, message: 'How are your?' },
       { id: 3, message: 'I`m ok, & your?' },
@@ -45,7 +45,7 @@ const messagesReducer = (state = initialState, action) => {
 
          return {
             ...state,
-            _messag: [...state._messag, { id: 20, message: action.messag }],
+            messag: [...state.messag, { id: 20, message: action.messag }],
 
          }
 

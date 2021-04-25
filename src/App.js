@@ -8,7 +8,6 @@ import MainpageContainer from './components/Mainpage/Mainpage'
 import { connect } from 'react-redux';
 
 const App = ({ auth }) => {
-  // console.log(auth)
   return (
     <div className=''>
       <HeaderContainer />

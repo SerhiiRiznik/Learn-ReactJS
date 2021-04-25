@@ -51,3 +51,10 @@ form .visited{
    font-weight: 600;
    color: rgb(100, 0, 0);
 }
+
+
+
+
+.captcha{
+   display: block;
+}

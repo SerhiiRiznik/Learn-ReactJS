@@ -5,12 +5,15 @@ import { setAuthorized, Login } from '../redux/auth-reducer'
 import style from './Login.module.css'
 import { FORM_ERROR } from "final-form";
 import { Redirect } from 'react-router'
+import Captcha from './Captcha'
+// import Captcha from './Captcha'
 
-const LoginForm = (props) => {
+const LoginForm = ({ Login, autorized }) => {
+
 
    const onSubmit = async (values) => {
-
-      let dataMesseg = await props.Login(values.email, values.password, values.rememberMe)
+      console.log();
+      let dataMesseg = await Login(values.email, values.password, values.rememberMe, values.captcha)
       await console.log(dataMesseg);
 
       return { [FORM_ERROR]: dataMesseg };
@@ -18,7 +21,12 @@ const LoginForm = (props) => {
 
    return (
       <>
-         {(props.autorized.authorized) ?
+         <div>
+            Данные тестового аккаунта: <br />
+            Email: free@samuraijs.com <br />
+            Password: free
+         </div>
+         {(autorized.authorized) ?
             <Redirect to='/profile' /> : null}
          <Form onSubmit={onSubmit}>
             {({
@@ -82,6 +90,7 @@ const LoginForm = (props) => {
                   <Field
                      name="rememberMe"
                      type='checkbox'
+
                   >
                      {({ input, meta }) => {
                         return (
@@ -97,6 +106,16 @@ const LoginForm = (props) => {
                         )
                      }}
                   </Field>
+
+                  {autorized.captchaUrl &&
+                     <Field
+                        name='captcha'
+                        type="text"
+                        validate={required}
+                        component={Captcha}
+                        captchaUrl={autorized.captchaUrl}
+                     />
+                  }
 
                   <button type="submit" disabled={submitting}>Submit</button>
 

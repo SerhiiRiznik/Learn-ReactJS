@@ -1,0 +1,23 @@
+
+.pagination{
+   margin: 10px;
+   display: flex;
+   justify-content: space-between;
+}
+
+.pageNumber{
+   cursor: pointer;
+   border-radius: 50%;
+   padding: 2px;
+   border: 1px solid #292d43;
+   color: #1c84cd;
+}
+
+.selectedPage{
+   border: 1px solid #1c84cd;
+   font-weight: 700;
+}
+
+.paginationBtn {
+
+}
