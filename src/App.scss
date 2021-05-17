@@ -22,6 +22,8 @@ html,body{
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    background-color: #f2f2f2 !important;
+    color: #222222;
     
 }
 input,button,textarea{font-family:inherit;}
@@ -41,103 +43,22 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
    font-size: 18px;
    box-sizing: border-box;
   margin: 0 auto;
-//   padding: 0 25px;
-  width: 1300px;
+//   width: 1300px;
 }
-.header{
 
-   background-color: rgba(13, 0, 200, 0.9);
-   .header__wrapper{
-      display: flex;
-      justify-content: space-between;
-      height: inherit;
-      height: 50px;
-      align-items: center;
-      img{
-      height: inherit;
-      }
-      ul{
-      display: flex;
-         li{
-            list-style: none;
-            margin: 0 20px;
-            a{
-               text-decoration: none;
-               color: rgb(250, 250, 250);
-               transition: .3s;
-               &:hover{
-                  color: #ccc;
-               }
-            }
-         }
-      }
-   }
-}
    
 .mainpage{
-   padding-top: 20px;
-            background-color: rgb(240, 240, 240);
 
    .mainpage__wrapper{
-      display: flex;
-      .mainpage__navbar{
-         font-weight: 600;
-         text-align: left;
-         width: 30%;
-         margin: 0px 20px;
-         background-color: #fff;
-         height: 400px;
-         &:last-child{
-            
-         }
-         ul{
-            li{
-               a{
-                  padding: 10px 10px;
-                  display: block;
-                  transition: all .2s;
-                  width: 100%;
-                  color: rgb(30, 30, 30);
-                  
-               }
-               .active{  
-                  color: #000;
-                  background-color: rgb(230, 230, 230);
-                  
-                     padding-left: 20px;
-                  
-                  &:hover{
-                     background-color: rgb(210, 210, 210);
-                     
-                  }
-               }
-               &:hover{
-                     background-color:  rgb(210, 210, 210);
-                     border-top-left-radius: 5px;
-                  }
-            }
-         }
-      }
       
-         
-      .mainpage__img{
-         // margin: 10px auto;
-         height: 125px;
-         img{
-            height: inherit;
-            
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-         }
-      }
+      
       .content-user{
          border-bottom: 2px solid #ccc;
          display: flex;
          padding: 5px 10px;
          align-items: center;
          img{
-            height: 100px;
+            // height: 100px;
          }
          .content-user__info{
             font-size: 14px;
@@ -146,10 +67,6 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
          }
       }
    }
-}
-
-.wrapper-content{
-   width: 70%;
 }
 
 .footer{

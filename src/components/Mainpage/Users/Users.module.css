@@ -45,8 +45,24 @@
 
 }
 
-
-
-.selectedPage{
-   font-weight: 700;
+.skeleton{
+   margin: 5px 0;
+   display: flex;
 }
+.skeleton .avatar{
+   margin: 5px;
+   border-radius: 10px;
+}
+.skeleton .button{
+   margin: auto !important;
+   width: 170px;
+   height: 40px;
+   margin: 5px;
+   border-radius: 10px;
+}
+
+.skeleton .info {
+   width: -webkit-fill-available;
+}
+
+

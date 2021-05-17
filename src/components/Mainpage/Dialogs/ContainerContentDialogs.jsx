@@ -1,31 +1,30 @@
-import { connect } from "react-redux";
-import { newMessagActionCreater, sentMessagActionCreater } from '../../redux/messages-reducer';
-import ContentDialogs from "./ContentDialogs";
+import React from 'react'
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withAutorized } from '../../HOC/withAuthorized';
+import { sentMessag } from '../../redux/messages-reducer';
+import ContentDialogs from './ContentDialogs';
+import { getDialogItem, getMessag, } from './selectors'
+
+
+const ContainerContentDialogs = (props) => {
+
+   return <ContentDialogs {...props} />
+}
 
 const mapStateToProps = (state) => {
 
    return {
-      dialogItem: state._messages.dialogItem,
-      _messag: state._messages._messag,
-      messagText: state._messages.massegText,
-   }
-
-}
-const mapDispatchToProps = (dispatch) => {
-   return {
-      sentMessag: () => {
-         dispatch(sentMessagActionCreater())
-      },
-      newMassegText: (messag) => {
-         dispatch(newMessagActionCreater(messag))
-      },
+      dialogItem: getDialogItem(state),
+      messag: getMessag(state),
    }
 }
+export default compose(
 
-const ContainerContentDialogs = connect(mapStateToProps, mapDispatchToProps)(ContentDialogs)
+   withAutorized,
+   connect(mapStateToProps, { sentMessag }),
+)(ContainerContentDialogs)
 
-
-export default ContainerContentDialogs
 
 
 

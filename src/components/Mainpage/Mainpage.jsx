@@ -1,42 +1,57 @@
-
-import ContentMusic from "./Music/ContentMusic";
-import ContentNews from "./News/ContentNews";
-import Setting from "./Setting/Setting";
-import ContentUser from "./Content/ContentUser";
-import { Route } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import React, { Suspense } from 'react'
 import Navbar from "./Navbar/Navbar";
-import UserInfo from "./Content/UserInfo/UserInfo";
-import ContainerContentDialogs from "./Dialogs/ContainerContentDialogs";
-import UsersContainer from "./Users/UsersContainer";
+import Login from "../Login/login";
+import { compose } from 'redux';
+import style from './Mainpage.module.css'
+
+
+const UsersContainer = React.lazy(() => import('./Users/UsersContainer'));
+const ContentUserContainer = React.lazy(() => import('./Content/ContentUserContainer'));
+const Info = React.lazy(() => import('./Info/Info'));
+const ContentMusic = React.lazy(() => import('./Music/ContentMusic'));
+const ContentNews = React.lazy(() => import('./News/ContentNews'));
+const UserInfo = React.lazy(() => import('./Content/UserInfo/UserInfo'));
+const ContainerContentDialogs = React.lazy(() => import('./Dialogs/ContainerContentDialogs'));
+const Settings = React.lazy(() => import('../Settings/Settings'));
 
 
 
-const Mainpage = () => {
-
+const MainpageContainer = (props) => {
 
    return (
-
-      <div className='mainpage'>
-         <div className='container'>
-            <div className='mainpage__wrapper'>
-               <Navbar />
-               <div className='wrapper-content'>
-
-
-                  <Route path='/about' render={() => <UserInfo />} />
-                  <Route path='/main' render={() => <ContentUser />} />
-                  <Route path='/dialogs' render={() => <ContainerContentDialogs />} />
-                  <Route path='/news' render={() => <ContentNews />} />
-                  <Route path='/music' render={() => <ContentMusic />} />
-                  <Route path='/settings' render={() => <Setting />} />
-                  <Route path='/users' render={() => <UsersContainer />} />
-
-               </div>
+      <div className='mainpage container mt-4'>
+         <div className='row '>
+            {/* <Navigation /> */}
+            <Navbar />
+            <div className={`col-md-9 p-0-right ${style.pageContent}`}>
+               <Suspense fallback={<div></div>}>
+                  <Switch>
+                     <Route path='/profile/:userId?' component={ContentUserContainer} />
+                     <Route path='/users' component={UsersContainer} />
+                     <Route path='/dialogs' component={ContainerContentDialogs} />
+                     <Route path='/news' component={ContentNews} />
+                     <Route path='/music' component={ContentMusic} />
+                     <Route path='/settings' component={Settings} />
+                     <Route path='/login' component={Login} />
+                     <Route path='/about' component={UserInfo} />
+                     <Route exact path='/' component={Info} />
+                     <Route path="*">
+                        <Redirect to={'/404NotFound'}
+                        />
+                     </Route>
+                  </Switch>
+               </Suspense>
             </div>
+
          </div>
       </div>
-
    )
 }
 
-export default Mainpage;
+export default compose(
+   withRouter
+)(MainpageContainer)
+
+// export default MainpageContainer
+

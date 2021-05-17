@@ -1,68 +1,81 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { folowAC, setUsersAC, unfolowAC, setCurrentPageAC, setTotalUsersCountAC } from "../../redux/users-reducer";
-import axios from "axios";
+import {
+   setPortionNumber,
+   unFollow, follow,
+   getUsersPages,
+   getUsersPagesChanged,
+} from "../../redux/users-reducer";
 import Users from './Users';
+import { compose } from 'redux';
+import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getLoading } from './Selectors'
+import Pagination from '../../common/Pagination/Pagination'
+import UsersLoader from './UsersLoader'
 
 
-class UsersContainer extends React.Component {
 
-   componentDidMount() {
+const UsersContainer = (props) => {
 
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-         .then(response => {
-            console.log(response);
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUsersCount(response.data.totalCount)
-         })
+   console.log(props);
+
+   useEffect(() => {
+      props.getUsersPages(props.currentPage, props.pageSize)
+   }, [])
+
+   const onPageChanged = (pageNumber) => {
+      props.getUsersPagesChanged(pageNumber, props.pageSize)
    }
 
-   onPageChanged = (pageNumber) => {
-      this.props.setCurrentPage(pageNumber)
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-         .then(response => {
-            console.log(response);
-            this.props.setUsers(response.data.items)
-         })
-   }
+   return (
+      <>
+         <Pagination
+            totalUsersCount={props.totalUsersCount}
+            pageSize={props.pageSize}
+            currentPage={props.currentPage}
+            onPageChanged={onPageChanged}
+            portionSize={props.portionSize}
+            portionNumber={props.portionNumber}
+            setPortionNumber={props.setPortionNumber}
+         />
+         {
+            props.isLoading ?
+               ((Array.from(new Array(props.pageSize))).map((item, index) => (
+                  <UsersLoader key={index} />
+               )))
+               :
+               <Users
+                  followingTime={props.followingTime}
+                  users={props.users}
+                  unfollow={props.unFollow}
+                  follow={props.follow}
+               />
+
+         }
 
 
-   render() {
 
-      return <Users
-
-         totalUsersCount={this.props.totalUsersCount}
-         pageSize={this.props.pageSize}
-         currentPage={this.props.currentPage}
-         onPageChanged={this.onPageChanged}
-         users={this.props.users}
-         unfollow={this.props.unfollow}
-         follow={this.props.follow}
-      />
-
-   }
+      </>
+   )
 }
-
 
 const mapStateToProps = (state) => {
    return {
-      users: state.usersPage.users,
-      pageSize: state.usersPage.pageSize,
-      totalUsersCount: state.usersPage.totalUsersCount,
-      currentPage: state.usersPage.currentPage,
-   }
-}
-const mapDisputchToProps = (dispatch) => {
-   return {
-      follow: (userId) => { dispatch(folowAC(userId)) },
-      unfollow: (userId) => { dispatch(unfolowAC(userId)) },
-      setUsers: (users) => { dispatch(setUsersAC(users)) },
-      setCurrentPage: (currentPage) => { dispatch(setCurrentPageAC(currentPage)) },
-      setTotalUsersCount: (currentPage) => { dispatch(setTotalUsersCountAC(currentPage)) },
+      users: getUsers(state),
+      pageSize: getPageSize(state),
+      totalUsersCount: getTotalUsersCount(state),
+      currentPage: getCurrentPage(state),
+      isLoading: getLoading(state),
+      portionSize: state.usersPage.portionSize,
+      portionNumber: state.usersPage.portionNumber,
+      followingTime: state.usersPage.followingTime
    }
 }
 
-
-const ContainerUsers = connect(mapStateToProps, mapDisputchToProps)(UsersContainer)
-
-export default ContainerUsers
+export default compose(
+   connect(mapStateToProps, {
+      setPortionNumber,
+      unFollow,
+      follow,
+      getUsersPages,
+      getUsersPagesChanged,
+   }))(UsersContainer)

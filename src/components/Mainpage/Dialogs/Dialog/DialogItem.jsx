@@ -7,7 +7,7 @@ const DialogItem = (props) => {
          {/* <img src='https://www.011global.com/Account/Slices/user-anonymous.png'></img> */}
 
          <NavLink to={'/dialogs/' + props.id} >
-            <img src='https://www.011global.com/Account/Slices/user-anonymous.png'></img>
+            <img src='https://www.011global.com/Account/Slices/user-anonymous.png' alt='UserLogo'></img>
             {props.name}
          </NavLink>
       </div >

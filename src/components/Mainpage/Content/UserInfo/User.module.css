@@ -1,3 +1,59 @@
 .wrrap {
+      font-size: 16px;
+      border-radius: var(--card-radius);
       background-color: #fff;
+      padding: 0 30px;
+
+}
+.wrrap span{
+      font-weight: 500;
+}
+
+
+
+.content__user__info ul li{
+      padding-left: 10px;
+}
+
+.photo{
+      position: relative;
+      padding-bottom: 20px;
+      margin: 0 auto;
+      text-align: center;
+}
+.photo img{
+      /* padding: 30px; */
+      height: inherit;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+        
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.input__file__upload{
+      position: absolute;
+      
+      line-height: 15px;
+      left: 50%;
+      transform: translate(-50%);
+      border: 1px solid #ccc;
+      display: inline-block;
+      padding: 3px 5px;
+      cursor: pointer;
+      animation: showInput .2s ease-in forwards;
+}
+
+@keyframes showInput {
+      from{
+            opacity: 0;
+            bottom: 30px;
+      }
+      to{
+            bottom: 20px;
+            opacity: 1;
+      }
 }

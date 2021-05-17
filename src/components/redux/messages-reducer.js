@@ -1,6 +1,5 @@
 
-const SEND_MESSAG = 'SEND-MESSAG'
-const NEW_MESSAG_TEXT = 'NEW-MESSAG-TEXT'
+const SEND_MESSAG = 'SEND_MESSAG'
 
 let initialState = {
    dialogItem: [
@@ -18,7 +17,7 @@ let initialState = {
       { id: 8, name: 'Kolya' },
       { id: 9, name: 'Vasia' },
    ],
-   _messag: [
+   messag: [
       { id: 1, message: 'Hi, i`m Sveta' },
       { id: 2, message: 'How are your?' },
       { id: 3, message: 'I`m ok, & your?' },
@@ -34,41 +33,25 @@ let initialState = {
       { id: 8, message: '' },
       { id: 9, message: 'asdasd' },
    ],
-   massegText: ''
 }
 
 const messagesReducer = (state = initialState, action) => {
-
-
-
    switch (action.type) {
-
       case SEND_MESSAG:
-         debugger
-         return {
-            ...state,
-            massegText: '',
-            _messag: [...state._messag, { id: 20, message: state.massegText }]
-         }
-
-
-      case NEW_MESSAG_TEXT:
 
          return {
             ...state,
-            massegText: action.messag
+            messag: [...state.messag, { id: 20, message: action.messag }],
          }
-
       default:
          return state
    }
 }
-export const newMessagActionCreater = (text) => {
-   return { type: 'NEW-MESSAG-TEXT', messag: text }
-}
-export const sentMessagActionCreater = () => {
-   return { type: 'SEND-MESSAG' }
+// ACTION
+export const sentMessag = (text) => {
+   return { type: SEND_MESSAG, messag: text }
 }
 
+// THUNK CREATOR
 
 export default messagesReducer

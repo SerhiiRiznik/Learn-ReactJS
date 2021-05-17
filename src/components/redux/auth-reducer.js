@@ -87,7 +87,7 @@ export const logout = () => async (dispatch) => {
    if (response.data.resultCode === 0) {
       dispatch(setAuthUser(false, null, null, null))
    }
-   // HI
+
 }
 
 export const getCaptcha = () => {

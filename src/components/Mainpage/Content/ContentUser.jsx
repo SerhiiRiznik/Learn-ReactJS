@@ -1,18 +1,28 @@
 import React from 'react'
 import UserInfo from './UserInfo/UserInfo';
 import PostsContainer from "./Posts/PostsContainer";
+import Loader from '../../common/Loader/Loader';
 
-const ContentUser = () => {
+const ContentUser = React.memo((props) => {
+   if (!props.userProfile) {
+      return <Loader />
+   } else {
+      return (
+         <>
+            {props.loading ? <Loader /> : <>
+               <UserInfo
+                  userProfile={props.userProfile}
+                  updateStatus={props.updateStatus}
+                  status={props.status}
+                  loadPhoto={props.loadPhoto}
+                  isOwner={props.isOwner}
+               />
+               <PostsContainer />
+            </>}
+         </>
 
-   return (
-
-      <div>
-         <UserInfo />
-         <PostsContainer />
-
-      </div>
-
-   )
-}
+      )
+   }
+})
 
 export default ContentUser;
