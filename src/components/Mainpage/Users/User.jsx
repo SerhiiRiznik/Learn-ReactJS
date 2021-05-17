@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 
 
-const User = ({ user, follow, unfollow }) => {
+const User = ({ user, follow, unfollow, followingTime }) => {
 
    return (
       <div className={styles.user__wrapp} key={user.id}>
@@ -15,12 +15,16 @@ const User = ({ user, follow, unfollow }) => {
             </NavLink>
             {
                user.followed ?
-                  <button onClick={() => {
+                  <button disabled={followingTime} className='btn' onClick={() => {
                      unfollow(user.id)
-                  }}>unFollow</button>
-                  : <button onClick={() => {
+                  }}>
+                     {followingTime && <span className="spinner-border" role="status" aria-hidden="true"></span>}
+                     unFollow</button>
+                  : <button disabled={followingTime} className='btn' onClick={() => {
                      follow(user.id)
-                  }}>Follow</button>
+                  }}>
+                     {followingTime && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                  Follow</button>
             }
          </div>
          <div className={styles.user__wrapp__info}>

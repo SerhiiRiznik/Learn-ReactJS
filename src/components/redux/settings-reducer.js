@@ -1,4 +1,7 @@
-import { userAPI, userPageAPI } from "../../API/api"
+import { userAPI, usersPageAPI } from "../../API/api"
+import { hideAlert, showAlert } from "./alert-reducer"
+
+
 let SET_SETTINGS = 'SET_SETTINGS'
 let SET_SETTING_PROFILE = 'SET_SETTING_PROFILES'
 
@@ -32,20 +35,22 @@ export const setProfilePage = (userId) => {
    }
 }
 
-
+// ACTION
 export const setSettings = () => ({ type: SET_SETTINGS })
 
+// THUNK CREATOR
 export const settingProfile = (settings) => {
    return async (dispatch) => {
 
-      let messag
-      let response = await userPageAPI.settingsProfile(settings)
+      let response = await usersPageAPI.settingsProfile(settings)
       await dispatch(setSettings())
 
       if (response.data.resultCode === 0) {
-         return messag = 'Saved'
-      } else {
-         return messag = response.data.messages
+         dispatch(showAlert('alert-success', 'saved'))
+         setTimeout(() => {
+            dispatch(hideAlert())
+         }, 5000)
+
       }
 
    }

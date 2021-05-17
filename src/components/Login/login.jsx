@@ -3,20 +3,16 @@ import { connect } from 'react-redux'
 import { required } from '../common/FormValidated/FormValidate'
 import { setAuthorized, Login } from '../redux/auth-reducer'
 import style from './Login.module.css'
-import { FORM_ERROR } from "final-form";
 import { Redirect } from 'react-router'
 import Captcha from './Captcha'
-// import Captcha from './Captcha'
 
 const LoginForm = ({ Login, autorized }) => {
 
 
    const onSubmit = async (values) => {
-      console.log();
-      let dataMesseg = await Login(values.email, values.password, values.rememberMe, values.captcha)
-      await console.log(dataMesseg);
 
-      return { [FORM_ERROR]: dataMesseg };
+      Login(values.email, values.password, values.rememberMe, values.captcha)
+
    }
 
    return (
@@ -36,8 +32,7 @@ const LoginForm = ({ Login, autorized }) => {
                values,
             }) => (
                <form className={style.loginForm} onSubmit={handleSubmit}>
-                  {submitError && <div className={style.error}>{submitError}</div>}
-                  <h1>LOGIN FORM MZFC</h1>
+                  <h1>LOGIN FORM</h1>
                   <Field
                      name="email"
                      placeholder="Email"
@@ -116,13 +111,10 @@ const LoginForm = ({ Login, autorized }) => {
                         captchaUrl={autorized.captchaUrl}
                      />
                   }
-
                   <button type="submit" disabled={submitting}>Submit</button>
 
                   <pre>{JSON.stringify(values, undefined, 2)}</pre>
                   <pre>{JSON.stringify(submitError, 0, 2)}</pre>
-
-
                </form>
             )}
          </Form>

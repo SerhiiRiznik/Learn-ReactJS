@@ -1,19 +1,25 @@
 import { NavLink } from "react-router-dom";
+import classNames from 'classnames'
+import style from './Navbar.module.css'
+import { connect } from "react-redux"
+import Navigation from "../../Header/Navigation";
 
-const Navbar = (props) => {
+const Navbar = ({ mobileBurger, }) => {
    return (
-      <div className='mainpage__navbar col-2'>
-         <ul className='navbar-nav'>
-            <li><NavLink to='/profile' className='nav-link'>Profile</NavLink></li>
-            <li><NavLink to='/dialogs' className='nav-link'>Massagers</NavLink></li>
-            <li><NavLink to='/news' className='nav-link'>News</NavLink></li>
-            <li><NavLink to='/music' className='nav-link'>Music</NavLink></li><br />
-            <li><NavLink to='/settings' className='nav-link'>Settings</NavLink></li><br />
-            <li><NavLink to='/users' className='nav-link'>Users</NavLink></li><br />
-            <li><NavLink to='/' className='nav-link'>Info</NavLink></li>
-         </ul>
-      </div>
+      <>
+         {!mobileBurger &&
+            <div className={classNames('col-3 p-0-left', { [style.mainpage__navbar]: true })}>
+               <Navigation />
+            </div>}
+      </>
    )
 }
 
-export default Navbar;
+let mapStateToProps = (state) => {
+
+   return {
+      mobileBurger: state.mobileReducer.windowWidth
+   }
+}
+
+export default connect(mapStateToProps, null)(Navbar)

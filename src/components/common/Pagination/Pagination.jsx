@@ -25,8 +25,6 @@ const Pagination = React.memo(({ totalUsersCount, pageSize, currentPage, onPageC
          {
             portionNumber > 1 &&
             <button className={classNames(style.paginationBtn, {
-               // 'btn': true,
-               // 'btn-light': true,
                'page-link': true,
             })}
                onClick={() => { setPortionNumber(portionNumber - 1) }}>Prev</button>

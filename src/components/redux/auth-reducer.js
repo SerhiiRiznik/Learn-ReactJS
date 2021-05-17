@@ -1,4 +1,5 @@
 import { authorized, security } from "../../API/api"
+import { hideAlert, showAlert } from "./alert-reducer"
 
 let SET_AUTH_USER = 'SET_AUTH_USER'
 let SET_CAPTCHA_URL = 'SET_CAPTCHA_URL'
@@ -14,9 +15,6 @@ let initialState = {
 
 
 const authReducer = (state = initialState, action) => {
-
-
-
    switch (action.type) {
 
       case SET_AUTH_USER:
@@ -39,10 +37,11 @@ const authReducer = (state = initialState, action) => {
 }
 
 
-
+// ACTION
 const setAuthUser = (authorized, userId, email, login) => ({ type: SET_AUTH_USER, authorized, userId, email, login })
 const setCaptchaUrl = (payload = '') => ({ type: SET_CAPTCHA_URL, payload })
 
+// THUNK CREATOR
 export const setAuthorized = () => {
    return (dispatch) => {
       return authorized.getUserAuth()
@@ -56,29 +55,33 @@ export const setAuthorized = () => {
 }
 
 export const Login = (email, password, rememberMe, captcha) => {
-
-   let messag
-
    return async (dispatch) => {
-
       let response = await authorized.login(email, password, rememberMe, captcha)
       if (response.data.resultCode === 0) {
          await dispatch(setAuthorized())
          await dispatch(setCaptchaUrl());
-
-         (response.data.messages.length === 0) ? messag = 'Authorization is successful' : messag = response.data.messages
-         return messag
+         await dispatch(showAlert('alert-success', 'You are logged in'))
+         setTimeout(() => {
+            dispatch(hideAlert())
+         }, 4000)
+      } else if (response.data.resultCode === 1) {
+         await dispatch(showAlert('alert-danger', response.data.messages[0]))
+         await setTimeout(() => {
+            dispatch(hideAlert())
+         }, 4000)
       } else {
          if (response.data.resultCode === 10) {
-            debugger
-            dispatch(getCaptcha())
-            return messag = response.data.messages[0]
+
+            await dispatch(getCaptcha())
+            await dispatch(showAlert('alert-warning', response.data.messages[0]))
+            await setTimeout(() => {
+               dispatch(hideAlert())
+            }, 4000)
          }
-         return messag = response.data.messages
       }
    }
 }
-export const Logout = () => async (dispatch) => {
+export const logout = () => async (dispatch) => {
 
    let response = await authorized.logout()
    if (response.data.resultCode === 0) {

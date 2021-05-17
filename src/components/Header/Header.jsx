@@ -1,44 +1,39 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import BurgerNav from './BurgerNav';
+import style from './Header.module.css'
 
+const Header = ({ isMobileBurger, ...props }) => {
+   // console.log(props, `Header Render`);
 
-const Header = (props) => {
-   // console.log(props,`Header Render`);
-   if (!props.authUser.authorized) {
-      return (
-         <nav className='navbar container justify-content-end'>
-            <ul className='nav nav-tabs' style={{ height: '50px' }}>
-               <li className='nav-item'></li>
-               <li className='nav-item'></li>
-               <li className='nav-item'></li>
-               <li className='nav-item'>
-            <NavLink className='btn btn-outline-secondary nav-link' to='login'>LogIn</NavLink>
-                  </li>
-            </ul>
-         </nav>
-      )
-   } else {
-      return (
-         <nav className='navbar container justify-content-end'>
-               <ul className='nav nav-tabs justify-content-end align-items-center' style={{ height: '50px' }}>
-                  <li  className='nav-item' title={'User Id: '+props.authUser.userId + ', Login: ' + props.authUser.login} >
-                  PhotoUser
-                  </li>
-                  <li style={{ paddingLeft: '5px' }} className='nav-item'>Email: {props.authUser.email}</li>
-                  <li style={{ paddingLeft: '5px' }} className='nav-item'>
-                     <button style={{ paddingLeft: '5px' }} className='btn btn-outline-secondary' 
-                     type="button"
-                     onClick={props.Logout}
-                     >
-                        LogOut
-                        
+   return (
+      <div className={`${style.header}`}>
+         {isMobileBurger && <BurgerNav />}
+         <div className={style.navRight}>
+            <ul className='align-items-center'>
+
+               {props.authUser.authorized &&
+                  <>
+                     <li className='nav-item' title={'User Id: ' + props.authUser.userId + ', Login: ' + props.authUser.login} >
+                        <img className={style.navUserAvatar} src={props.userPhoto.small} alt="" />
+                     </li>
+                     <li className='nav-item'>Email: {props.authUser.email}</li>
+                     <li className='nav-item'>
+                        <button className={`btn btn-outline-success ${style.headerButton}`}
+                           type="button"
+                           onClick={props.logout}
+                        >
+                           LogOut
                      </button>
-                  </li>
-               </ul>
-         </nav>
-      );
-   }
+                     </li>
+                  </>
+               }
 
+               {!props.authUser.authorized && <NavLink className={`btn btn-outline-success ${style.headerButton}`} to='login'>LogIn</NavLink>}
+            </ul>
+         </div>
+      </div>
+   );
 }
 
 export default Header;

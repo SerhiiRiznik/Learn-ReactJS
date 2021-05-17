@@ -14,50 +14,47 @@ const UserInfo = (props) => {
    }
 
    return (
-      <>
-         <div className={style.wrrap}>
-            <div className={style.photo}>
-               <img
+      <div className={style.wrrap}>
+         <div className={style.photo}>
+            <img
+               onMouseEnter={() => setShowInput(true)}
+               onMouseLeave={() => setShowInput(false)}
+               src={props.userProfile.photos.large || UserPhoto} alt="imgPage" />
+
+            {props.isOwner && showInput ? <div>
+               <label
                   onMouseEnter={() => setShowInput(true)}
                   onMouseLeave={() => setShowInput(false)}
-                  src={props.userProfile.photos.large || UserPhoto} alt="imgPage" />
-
-               {props.isOwner && showInput ? <div>
-                  <label
-                     onMouseEnter={() => setShowInput(true)}
-                     onMouseLeave={() => setShowInput(false)}
-                     htmlFor="file" className={style.input__file__upload}>
-                     Upload new photo
+                  htmlFor="file" className={style.input__file__upload}>
+                  Upload new photo
                   </label>
-                  <input onChange={loadPhoto} id="file" type='file' accept=".jpg, .jpeg, .png"></input>
-               </div> : null}
-            </div>
-            <div className='content-user'>
-               <img src={props.userProfile.photos.small || UserPhoto} alt='UserLogo'></img>
-               <div className={style.content__user__info}>
-                  <div><b>User Name:</b> {props.userProfile.fullName}</div>
-                  <div><b>About Me:</b> {props.userProfile.aboutMe}</div>
-                  <UserStatus
-                     aboutMe={props.userProfile.aboutMe}
-                     updateStatus={props.updateStatus}
-                     userStatus={props.status}
-                     isOwner={props.isOwner}
-                  />
-                  <ul><b>Contacts:</b>
-                     <li><b>facebook:</b> {props.userProfile.contacts.facebook}</li>
-                     <li><b>github:</b> {props.userProfile.contacts.github}</li>
-                     <li><b>instagram:</b> {props.userProfile.contacts.instagram}</li>
-                     <li><b>twitter:</b> {props.userProfile.contacts.twitter}</li>
-                     <li><b>vk:</b> {props.userProfile.contacts.vk}</li>
-                     <li><b>website:</b> {props.userProfile.contacts.website}</li>
-                     <li><b>youtube:</b> {props.userProfile.contacts.youtube}</li>
-                  </ul>
-                  <p><b>Looking for a job:</b> {props.userProfile.lookingForAJob ? <label>Looking <img src={lfj} alt='LookingForJob'></img></label> : <label>Have Job <img src={hj} alt='haveJob'></img></label>}</p>
-                  <p><b>Job description:</b> {props.userProfile.lookingForAJobDescription && <label>{props.userProfile.lookingForAJobDescription}</label>}</p>
-               </div>
+               <input onChange={loadPhoto} id="file" type='file' accept=".jpg, .jpeg, .png"></input>
+            </div> : null}
+         </div>
+         <div className='content-user'>
+            <div className={style.content__user__info}>
+               <div><span>User Name:</span> {props.userProfile.fullName}</div>
+               <div><span>About Me:</span> {props.userProfile.aboutMe}</div>
+               <UserStatus
+                  aboutMe={props.userProfile.aboutMe}
+                  updateStatus={props.updateStatus}
+                  userStatus={props.status}
+                  isOwner={props.isOwner}
+               />
+               <ul><span>Contacts:</span>
+                  <li><span>facebook:</span> {props.userProfile.contacts.facebook}</li>
+                  <li><span>github:</span> {props.userProfile.contacts.github}</li>
+                  <li><span>instagram:</span> {props.userProfile.contacts.instagram}</li>
+                  <li><span>twitter:</span> {props.userProfile.contacts.twitter}</li>
+                  <li><span>vk:</span> {props.userProfile.contacts.vk}</li>
+                  <li><span>website:</span> {props.userProfile.contacts.website}</li>
+                  <li><span>youtube:</span> {props.userProfile.contacts.youtube}</li>
+               </ul>
+               <p><span>Looking for a job:</span> {props.userProfile.lookingForAJob ? <label>Looking <img src={lfj} alt='LookingForJob'></img></label> : <label>Have Job <img src={hj} alt='haveJob'></img></label>}</p>
+               <p><span>Job description:</span> {props.userProfile.lookingForAJobDescription && <label>{props.userProfile.lookingForAJobDescription}</label>}</p>
             </div>
          </div>
-      </>
+      </div>
    )
 }
 export default UserInfo;

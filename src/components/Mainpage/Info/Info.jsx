@@ -1,4 +1,4 @@
-import style from './Setting.module.css'
+import style from './Info.module.css'
 
 const Info = () => {
    return (
@@ -7,7 +7,7 @@ const Info = () => {
          <hr />
          <h3>Bugs</h3>
          <p>
-            <b>UsersComponent:</b> My Pagination does not work correctly
+            <b>Navigation:</b> Burger & main Nav PZDC, but work))
          </p>
          <p>
             <b>SetingsComponent:</b> InitialState for Inputs have bug
@@ -19,7 +19,7 @@ const Info = () => {
          <h3>In progres</h3>
          <div>
             <ol>
-               <li>recaptcha</li>
+               <li>recaptcha <b>done</b></li>
                <li>Loading Photo move to SetingsComponent</li>
                <li>Loader for all Async request</li>
                <li>Refactoring code</li>

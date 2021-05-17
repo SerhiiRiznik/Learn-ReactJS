@@ -1,0 +1,35 @@
+.mainpage__navbar{
+   height: max-content;
+   font-weight: 600;
+   text-align: left;
+   background-color: transparent !important; 
+   padding: 0;   
+}
+.mainpage__navbar ul li:hover{
+   
+   /* background-color:  rgb(210, 210, 210); */
+   border-top-left-radius: 5px;  
+}
+.mainpage__navbar ul li{
+   position: relative;
+    display: block;  
+}
+   
+.mainpage__navbar ul li a{
+   display: flex;
+   align-items: center;
+   padding: 9px 20px;
+cursor: pointer;
+       text-decoration: none;
+   transition: all .2s;
+   color: rgb(30, 30, 30);
+}
+.active::before {
+   content: " ";
+    position: absolute;
+    border-left: 4px solid #95df00;
+    left: 0;
+    right: auto;
+    bottom: 0;
+    top: 0;
+}

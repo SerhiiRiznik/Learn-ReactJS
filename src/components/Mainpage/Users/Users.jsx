@@ -1,18 +1,18 @@
 import React from "react";
-import styles from './Users.module.css'
-import Pagination from "../../common/Pagination/Pagination";
 import User from "./User";
+import styles from './Users.module.css';
 
 
 
-const Users = (props) => {
+
+const Users = ({ users, follow, unfollow, followingTime }) => {
 
    return (
       <div className={styles.wrapp}>
 
-
          {
-            props.users.map((user, index) => <User key={index} user={user} follow={props.follow} unfollow={props.unfollow} />)
+            users.map((user, index) => <User key={index} user={user} follow={follow} unfollow={unfollow} followingTime={followingTime} />)
+
          }
       </div>
    )

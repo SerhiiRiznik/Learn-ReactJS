@@ -2,19 +2,22 @@ import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import {
    setPortionNumber,
-   setUnFollow, setFollow,
+   unFollow, follow,
    getUsersPages,
    getUsersPagesChanged,
 } from "../../redux/users-reducer";
 import Users from './Users';
-import Loader from '../../common/Loader/Loader';
 import { compose } from 'redux';
-import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getLoading } from './Selectors';
-import Pagination from '../../common/Pagination/Pagination';
+import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getLoading } from './Selectors'
+import Pagination from '../../common/Pagination/Pagination'
+import UsersLoader from './UsersLoader'
 
 
 
 const UsersContainer = (props) => {
+
+   console.log(props);
+
    useEffect(() => {
       props.getUsersPages(props.currentPage, props.pageSize)
    }, [])
@@ -35,13 +38,22 @@ const UsersContainer = (props) => {
             setPortionNumber={props.setPortionNumber}
          />
          {
-            props.isLoading ? <Loader /> : <Users
+            props.isLoading ?
+               ((Array.from(new Array(props.pageSize))).map((item, index) => (
+                  <UsersLoader key={index} />
+               )))
+               :
+               <Users
+                  followingTime={props.followingTime}
+                  users={props.users}
+                  unfollow={props.unFollow}
+                  follow={props.follow}
+               />
 
-               users={props.users}
-               unfollow={props.setUnFollow}
-               follow={props.setFollow}
-            />
          }
+
+
+
       </>
    )
 }
@@ -55,14 +67,15 @@ const mapStateToProps = (state) => {
       isLoading: getLoading(state),
       portionSize: state.usersPage.portionSize,
       portionNumber: state.usersPage.portionNumber,
+      followingTime: state.usersPage.followingTime
    }
 }
 
 export default compose(
    connect(mapStateToProps, {
       setPortionNumber,
-      setUnFollow,
-      setFollow,
+      unFollow,
+      follow,
       getUsersPages,
       getUsersPagesChanged,
    }))(UsersContainer)

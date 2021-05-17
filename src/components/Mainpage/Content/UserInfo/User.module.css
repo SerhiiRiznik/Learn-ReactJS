@@ -1,6 +1,12 @@
 .wrrap {
-      
+      font-size: 16px;
+      border-radius: var(--card-radius);
       background-color: #fff;
+      padding: 0 30px;
+
+}
+.wrrap span{
+      font-weight: 500;
 }
 
 
@@ -16,7 +22,12 @@
       text-align: center;
 }
 .photo img{
-      padding: 30px;
+      /* padding: 30px; */
+      height: inherit;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+        
 }
 
 input[type="file"] {

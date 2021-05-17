@@ -6,7 +6,7 @@ import { FORM_ERROR } from "final-form";
 
 
 
-const Profile = ({ profile, settingProfile }) => {
+const ProfileSettings = ({ profile, settingProfile }) => {
 
    const onSubmit = async (values) => {
 
@@ -116,4 +116,4 @@ const Profile = ({ profile, settingProfile }) => {
    )
 }
 
-export default Profile
+export default ProfileSettings

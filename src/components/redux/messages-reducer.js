@@ -1,5 +1,5 @@
 
-const SEND_MESSAG = 'SEND-MESSAG'
+const SEND_MESSAG = 'SEND_MESSAG'
 
 let initialState = {
    dialogItem: [
@@ -36,28 +36,22 @@ let initialState = {
 }
 
 const messagesReducer = (state = initialState, action) => {
-
-
-
    switch (action.type) {
-
       case SEND_MESSAG:
 
          return {
             ...state,
             messag: [...state.messag, { id: 20, message: action.messag }],
-
          }
-
-
       default:
          return state
    }
 }
-
+// ACTION
 export const sentMessag = (text) => {
    return { type: SEND_MESSAG, messag: text }
 }
 
+// THUNK CREATOR
 
 export default messagesReducer

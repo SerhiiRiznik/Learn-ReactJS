@@ -7,6 +7,8 @@ import UsersReducer from './users-reducer';
 import authReducer from './auth-reducer';
 import appReducer from './app-reducer';
 import settingsReducer from './settings-reducer';
+import mobileReducer from './mobile-reducer';
+import alertReducer from './alert-reducer';
 
 
 
@@ -17,7 +19,8 @@ let reducers = combineReducers({
    usersPage: UsersReducer,
    app: appReducer,
    settings: settingsReducer,
-
+   mobileReducer: mobileReducer,
+   alert: alertReducer,
 
 })
 

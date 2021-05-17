@@ -12,7 +12,6 @@ const instance = axios.create({
 
 export const userAPI = {
    getUser(userId) {
-      // debugger
       return instance.get(`profile/` + userId)
          .then(response => (response.data))
    },
@@ -28,19 +27,12 @@ export const userAPI = {
          }
       })
    },
-
-
-
-
 }
-export const userPageAPI = {
-
+export const usersPageAPI = {
    getFollow(userId) {
       return instance.get(`profile/` + userId)
          .then(response => (response.data))
    },
-
-
    setUnfollowUser(userId) {
       return instance.delete(`follow/${userId}`,)
    },

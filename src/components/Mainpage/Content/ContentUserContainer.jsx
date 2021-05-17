@@ -27,6 +27,7 @@ const ContentUserContainer = (props) => {
       userStatus={props.userProfile}
       loadPhoto={props.loadPhoto}
       isOwner={!props.match.params.userId}
+      loading={props.userProfileLoading}
    />
 }
 
@@ -34,6 +35,7 @@ let mapStateToProps = (state) => {
    return {
       userProfile: state.userPage.userProfile,
       status: state.userPage.userStatus,
+      userProfileLoading: state.userPage.loading
    }
 }
 export default compose(

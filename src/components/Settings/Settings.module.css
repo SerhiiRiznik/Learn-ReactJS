@@ -39,3 +39,27 @@ input:focus{
    /* font-weight: 600; */
    color: rgb(100, 0, 0);
 }
+
+
+.photo{
+      position: relative;
+      padding-bottom: 20px;
+      margin: 0 auto;
+      text-align: center;
+}
+.photo img{
+      padding: 30px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.input__file__upload{
+      line-height: 15px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      padding: 3px 5px;
+      cursor: pointer;
+}
+

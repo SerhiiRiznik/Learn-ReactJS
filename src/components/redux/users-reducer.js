@@ -1,5 +1,6 @@
-import { userAPI, userPageAPI } from "../../API/api"
+import { userAPI, usersPageAPI } from "../../API/api"
 
+const SET_FOLLOWIN_TIME = 'SET_FOLLOWIN_TIME'
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -11,6 +12,7 @@ const SET_PORTION_NUMBER = 'SET_PORTION_NUMBER'
 let initialState = {
    isLoading: false,
    users: [],
+   followingTime: false,
    pageSize: 5,
    totalUsersCount: null,
    currentPage: 1,
@@ -21,7 +23,6 @@ let initialState = {
 
 
 let UsersReducer = (state = initialState, action) => {
-
    switch (action.type) {
       case FOLLOW:
          return {
@@ -44,6 +45,8 @@ let UsersReducer = (state = initialState, action) => {
                return user
             })
          }
+      case SET_FOLLOWIN_TIME:
+         return { ...state, followingTime: action.payload }
       case SET_USERS:
          return { ...state, users: action.users }
       case SET_CURRENT_PAGE:
@@ -60,19 +63,16 @@ let UsersReducer = (state = initialState, action) => {
 
 }
 
-
-export const follow = (userId) => ({ type: FOLLOW, userId })
-export const unfollow = (userId) => ({ type: UNFOLLOW, userId })
+// -----------------------ACTION------------------
+export const setFollowingTime = (payload) => ({ type: SET_FOLLOWIN_TIME, payload })
+export const setFollow = (userId) => ({ type: FOLLOW, userId })
+export const setUnfollow = (userId) => ({ type: UNFOLLOW, userId })
 export const setUsers = (users) => ({ type: SET_USERS, users })
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
 export const setTotalUsersCount = (usersCount) => ({ type: SET_TOTAL_USER_COUNT, usersCount })
 export const setLoading = (loading) => ({ type: SET_LOADING, loading })
 export const setPortionNumber = (portionNumber) => ({ type: SET_PORTION_NUMBER, portionNumber })
-
-
-
-
-
+// ---------------------THUNK CREATOR-----------------
 export const getUsersPages = (currentPage, pageSize) => {
    return async (dispatch) => {
       dispatch(setLoading(true))
@@ -98,26 +98,24 @@ export const getUsersPagesChanged = (pageNumber, pageSize) => {
 
    }
 }
-export const setUnFollow = (userId) => async (dispatch) => {
-   let response = await userPageAPI.setUnfollowUser(userId)
+export const unFollow = (userId) => async (dispatch) => {
+   dispatch(setFollowingTime(true))
+   let response = await usersPageAPI.setUnfollowUser(userId)
 
    if (response.data.resultCode === 0) {
-      dispatch(unfollow(userId))
+      dispatch(setUnfollow(userId))
    }
-
+   dispatch(setFollowingTime(false))
 }
-export const setFollow = (userId) => async (dispatch) => {
-   let response = await userPageAPI.setFollowUser(userId)
+export const follow = (userId) => async (dispatch) => {
+   dispatch(setFollowingTime(true))
+   let response = await usersPageAPI.setFollowUser(userId)
 
    if (response.data.resultCode === 0) {
-      dispatch(follow(userId))
+      dispatch(setFollow(userId))
    }
-
+   dispatch(setFollowingTime(false))
 }
-
-
-
-
 
 
 export default UsersReducer

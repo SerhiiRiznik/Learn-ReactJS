@@ -12,7 +12,7 @@ import { withRouter } from 'react-router-dom'
 
 
 const Settings = ({ initialized, settingProfile, setProfilePage, profile, ...props }) => {
-   console.log(props, profile);
+
    useEffect(() => {
 
       setProfilePage(props.authUser.userId)
