@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
-import BurgerNav from './BurgerNav';
 import style from './Header.module.css'
 import classNames from 'classnames'
 
